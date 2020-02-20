@@ -47,6 +47,8 @@ hr {
     position: absolute;
     right: 50px;
     top: 50px;
+    display: flex;
+    flex-direction: row;
     width: 500px;
     height: 200px;
     border-style: solid;
@@ -86,6 +88,3 @@ table, th, td {
     width: 50px;
     pointer-events: none; 
 }
-
-
-

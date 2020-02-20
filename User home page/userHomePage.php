@@ -8,22 +8,32 @@
     <div class="latestOrder">Latest Order:</div>
     <hr class="sep">
     <div class="products">
-        <?php
-            $serverName = "localhost";
-            $userName = "root";
-            $password = "Azayem_242007";
-            $dbName = "Cafe";
-            $conn = new mysqli($serverName, $userName, $password, $dbName);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            $sql = "SELECT * FROM products";
-            $result = $conn->query($sql);
-            while($row=$result->fetch_assoc()){
-                echo "<div class='item' data-id='{$row["product_id"]}' data-price='{$row["price"]}'>".$row["name"]."<br>"
-                .$row["price"]." LE"."</div>";
-            }
-        ?>
+    <?php
+                $dsn = 'mysql:dbname=Cafe;host=127.0.0.1;port=3306;';
+                $user = 'root';
+                $password = '';
+                $id=1;
+                try{
+                    $db = new PDO($dsn , $user, $password);
+                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $sql = "SELECT amount, name
+                            FROM orders, order_items, products 
+                            WHERE orders.user_id=$id
+                            AND orders.date_time=(SELECT MAX(date_time) FROM orders WHERE user_id=$id)
+                            AND orders.order_id=order_items.order_id 
+                            AND products.product_id=order_items.product_id";
+                    $stmt = $db->query($sql); 
+                    $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);
+                    while($row=$stmt->fetch()){
+                        echo "<div class='item'>".$row["name"]."<br>".$row["amount"]."</div>";
+                    }
+                }catch (PDOException $e) {
+                    echo 'Failed to connect to database'. $e->getMessage();
+                }
+                $db=null;
+    
+            ?>
+        </div>
 
     </div>
     <form id="order-form">
