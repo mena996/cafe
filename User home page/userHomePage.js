@@ -109,6 +109,7 @@ fd.addEventListener('submit',(e)=>{
     //   .then(json)
       .then(function (data) {
         console.log('Request succeeded with JSON response', data);
+        location.reload();
       })
       .catch(function (error) {
         console.log('Request failed', error);

@@ -1,4 +1,5 @@
 .container {
+    background-color: gray;
     display: flex;
     flex-direction: row;
 }
@@ -23,7 +24,7 @@
 
 .items {
     width: 100%;
-    height: 150px;
+    height: 230px;
 }
 
 hr {

@@ -27,54 +27,42 @@
 
             <div class="latestOrder">Latest Order:
                 <?php
-                $dsn = 'mysql:dbname=Cafe;host=127.0.0.1;port=3306;';
-                $user = 'root';
-                $password = 'Azayem_242007';
                 $id=1;
-                try{
-                    $db = new PDO($dsn , $user, $password);
-                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $sql = "SELECT amount, name, image
-                            FROM orders, order_items, products 
-                            WHERE orders.user_id=$id
-                            AND orders.date_time=(SELECT MAX(date_time) FROM orders WHERE user_id=$id)
-                            AND orders.order_id=order_items.order_id 
-                            AND products.product_id=order_items.product_id";
-                    $stmt = $db->query($sql); 
-                    $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);
-                    while($row=$stmt->fetch()){
-                        echo "<div class='item'>"." <img src='{$row["image"]}' height=\"42\" width=\"42\"> "
-                        .$row["name"]."<br>".$row["amount"]."</div>";
-                    }
-                }catch (PDOException $e) {
-                    echo 'Failed to connect to database'. $e->getMessage();
+                include 'databaseConnection.php';
+                $sql = "SELECT amount, name, image
+                        FROM orders, order_items, products 
+                        WHERE orders.user_id=$id
+                        AND orders.date_time=(SELECT MAX(date_time) FROM orders WHERE user_id=$id)
+                        AND orders.order_id=order_items.order_id 
+                        AND products.product_id=order_items.product_id";
+                $stmt = $db->query($sql); 
+                $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);
+                while($row=$stmt->fetch()){
+                    echo "<div class='item'>"." <img src='{$row["image"]}' height=\"42\" width=\"100%\"> "
+                    .$row["name"]."<br>".$row["amount"]."</div>";
                 }
+
                 $db=null;
                 
-                ?>
+            ?>
         </div>
         <!-- <hr class="sep"> -->
         <div class="products">
             <?php
-                $serverName = "localhost";
-                $userName = "root";
-                $password = "Azayem_242007";
-                $dbName = "Cafe";
-                $conn = new mysqli($serverName, $userName, $password, $dbName);
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
+                include 'databaseConnection.php';
                 $sql = "SELECT * FROM products";
-                $result = $conn->query($sql);
-                while($row=$result->fetch_assoc()){
-                    echo "<div class='item'>"
+                $stmt = $db->query($sql); 
+                $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);
+                while($row=$stmt->fetch()){
+                echo "<div class='item'>"
                     .$row["name"]."<br>"
-                    ." <img class='image' data-id='{$row["product_id"]}' data-name='{$row["name"]}' data-price='{$row["price"]}' 
-                    src='{$row["image"]}' height=\"42\" width=\"42\"> "
+                    ." <img class='image' data-id='{$row["product_id"]}' 
+                    data-name='{$row["name"]}' data-price='{$row["price"]}' 
+                    src='{$row["image"]}' height=\"42\" width=\"100%\"> "
                     .$row["price"]." LE"."</div>";
                 }
-                $conn -> close();
-                ?>
+                $db=null;
+            ?>
         </div>
     </div>
         
