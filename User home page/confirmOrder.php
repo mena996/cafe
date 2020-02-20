@@ -1,7 +1,7 @@
 <?php
     $dsn = 'mysql:dbname=Cafe;host=127.0.0.1;port=3306;';
     $user = 'root';
-    $password = 'Azayem_242007';
+    $password = '';
     $products = $_POST["products"];
     echo json_encode($_POST["products"]);
 

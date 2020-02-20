@@ -1,21 +1,25 @@
-let items = document.getElementsByClassName('item');
+let items = [... document.getElementsByClassName('image')];
 let myOrder = document.getElementById('myOrder');
 let orderArr = myOrder.children;
 let bill = document.getElementById('bill');
+console.log(items);
+
 
 for (const element of items) {
-
+    
     element.addEventListener('click', (e) => {
+        
+        let product_id = e.target.dataset["id"];
+        let price = e.target.dataset["price"];
         
         for (let i = 0; i < orderArr.length; i++) {
             let item = orderArr[i].firstChild.innerText;
-            if(item === element.firstChild.textContent){
+            if(item === e.target.dataset["name"]){
                 return;
             }
         }
         
         let product = document.createElement('div');
-        let product_id = e.target.dataset["id"];
         
         product.className = "productOptions";
         // product.innerText = element.firstChild.textContent;
@@ -23,7 +27,7 @@ for (const element of items) {
         let name = document.createElement('span')
         // name.name = "name[]";
         // name.className = "productName";
-        name.innerText = element.firstChild.textContent;
+        name.innerText = e.target.dataset["name"];
         ////////////////////////////////////
         let amount = document.createElement('input');
         amount.name=`products[${product_id}]`;
@@ -32,7 +36,6 @@ for (const element of items) {
         amount.value=count;
         ///////////////////////////////////
         let total = document.createElement('span');
-        let price = e.target.dataset["price"];
         total.className = "totalCost";
         total.innerText=count*price;
         ////////////////////////////////

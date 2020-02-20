@@ -1,19 +1,24 @@
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.container2 {
+    width: 100%;
+}
+
 .currentOrder {
-    position: absolute;
-    left: 50px;
-    top: 50px;
-    width: 400px;
+    min-width: 400px;
     height: 500px;
     border-style: solid;
 }
 
 .notes {
-    margin: 20px;
-    width: 260px;
+    resize: none;
 }
 
-.currentOrder  p {
-    display: inline-block;
+.noteLabel {
+    display: block;
 }
 
 .items {
@@ -25,28 +30,22 @@ hr {
     margin: 10px 20px;
 }
 
-.confirm{
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-}
 
 .products {
-    position: absolute;
-    top: 300px;
-    right: 40px;
+    width: 100%;
+    height: 200px;
+    margin-top: 95px;
     display: flex;
     flex-direction: row;
     justify-content: start;
-    width: 700px;
-    height: 200px;
     border-style: double;
 }
 
 .latestOrder {
-    position: absolute;
+    /* position: absolute;
     right: 50px;
-    top: 50px;
+    top: 50px; */
+    min-width: 100%;
     display: flex;
     flex-direction: row;
     width: 500px;
@@ -62,9 +61,11 @@ hr {
 }
 
 .item {
+    display: flex;
+    flex-direction: column;
     margin: 10px;
     border-style: solid;
-    height: 40px;
+    height: 90px;
 }
 
 .total {
