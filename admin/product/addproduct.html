@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product </title>
+    <link rel="stylesheet" href="fontawesome-free-5.12.1-web/css/all.css">
+</head>
+
+<body id="main_body">
+
+    <div id="form_container">
+        <div class="title">
+            <div class="menu">
+                <table>
+                    <td> <a href="Home.php?">Home | </a></td>
+                    <td> <a href="Products.php?">Products | </a></td>
+                    <td> <a href="Users.php?">Users | </a></td>
+                    <td> <a href="ManualOrders.php?">Manual orders | </a></td>
+                    <td> <a href="Checks.php?">Checks </a></td>
+                </table>
+            </div>
+            <div class="header">
+                <h6 class="adminname">Admin</h6>
+                <i class="fas fa-heart" id="admin"></i>
+            </div>
+        </div>
+        <h1 class="addproductheader"> Add Product</h1>
+
+        <form id="form" class="addproduct" method="POST" action="addproduct.php" enctype="multipart/form-data">
+            <table class="list">
+                <tr>
+
+                    <td> Product </td>
+
+                    <td> <input id="product_name" name="product_name" class="product_name" type="text" maxlength="255"
+                            value="" />
+                        <span class="error">*</span></td>
+                </tr>
+
+                <tr id="price">
+                    <td> Price </td>
+
+                    <td> <input id="price" name="price" class="price" type="number" maxlength="255" min="1" step="0.5" value="1" />
+                        <span class="error">*</span></td>
+
+                </tr>
+
+
+                <tr id="cat">
+                    <td> Category </td>
+                    <td> <select class="category" id="category" name="category">
+                            <option value="1">Hot Drinks</option>
+                            <option value="2">Soft Drinks</option>
+                            <option value=""></option>
+                        </select> <span class="error">*</span>
+                        <a href="addcategory.php?">add category</a></td>
+
+                </tr>
+                <tr id="productpicture">
+                    <td> Product Picture</td>
+                    <td> <input type="file" name="Product_Picture">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="1000000"></td>
+
+                </tr>
+
+                <tr class="buttons">
+                    <td></td>
+                    <td> <input id="saveForm" class="button_text" type="submit" name="submit" value="Save" />
+                        <input id="resetForm" class="button_text" type="reset" name="reset" value="Reset" /></td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+    <style>
+        .error {
+            color: #FF0000;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: row;
+
+        }
+
+        .header {
+            display: flex;
+            flex-direction: row-reverse;
+
+        }
+
+        .title {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .adminname {
+            text-decoration: underline;
+            font-size: 80%;
+            margin-right: 5%;
+        }
+
+        #admin {
+            font-size: 250%;
+            padding: 0%;
+            margin: 0%;
+        }
+
+        .addproductheader {
+            padding: 0%;
+            margin: 0%;
+        }
+    </style>
+</body>
+
+</html>
