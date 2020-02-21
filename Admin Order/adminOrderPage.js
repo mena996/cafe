@@ -1,7 +1,10 @@
-let items = [... document.getElementsByClassName('image')];
+const items = [... document.getElementsByClassName('image')];
 let myOrder = document.getElementById('myOrder');
 let orderArr = myOrder.children;
 let bill = document.getElementById('bill');
+const usersMenu = document.getElementById('users');
+
+
 
 
 for (const element of items) {
@@ -64,7 +67,7 @@ for (const element of items) {
         removeBtn.type="button";
         removeBtn.className = "btn";
         removeBtn.innerText= "X";
-        removeBtn.addEventListener('click',()=>{myOrder.removeChild(product); calculateCost(); })
+        removeBtn.addEventListener('click',()=>{myOrder.removeChild(product);calculateCost();})
         ///////////////////////////////
         product.appendChild(name);
         product.appendChild(incBtn);
@@ -77,7 +80,12 @@ for (const element of items) {
         
     })
 }
-
+///////////////////////////////////////////////
+// usersMenu.addEventListener('change',()=>{
+//     console.log(usersMenu.value);
+//     myOrder.innerHTML+= `<input type='hidden' name='user' value='${usersMenu.value}'></input>`;
+// })
+//////////////////////////////////////////////
 function calculateCost(){
     let tot=0;
     let itemsPrice = [... document.getElementsByClassName('totalCost')];
@@ -91,7 +99,7 @@ function calculateCost(){
 }
 
 
-
+//AJAX
 const fd = document.getElementById('order-form')
 fd.addEventListener('submit',(e)=>{
     e.preventDefault()
@@ -101,7 +109,9 @@ fd.addEventListener('submit',(e)=>{
     for (const [name,value] of formData.entries()){ 
         requestData+=`${name}=${value}&`
     }
-    fetch('/test/confirmOrder.php', {
+    requestData+=`user=${usersMenu.value}`;
+
+    fetch('/test/adminOrderPage/confirmAdminOrder.php', {
         method: 'post',
         headers: {
           "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
