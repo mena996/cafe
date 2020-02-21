@@ -13,10 +13,10 @@
         <div class="title">
             <div class="menu">
                 <table class="table">
-                    <td> <a href="Home.php?">Home | </a></td>
-                    <td> <a href="Products.php?">Products | </a></td>
-                    <td> <a href="Users.php?">Users | </a></td>
-                    <td> <a href="ManualOrders.php?">Manual orders | </a></td>
+                    <td> <a href="userHomePage.php?">Home | </a></td>
+                    <td> <a href="addproductall.php?">Products | </a></td>
+                    <td> <a href="alluserspage.php?">Users | </a></td>
+                    <td> <a href="adminOrderPage.php?">Manual orders | </a></td>
                     <td> <a href="Checks.php?">Checks </a></td>
                 </table>
             </div>

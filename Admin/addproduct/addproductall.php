@@ -12,10 +12,10 @@
         <div class="title">
             <div class="menu">
                 <table>
-                    <td> <a href="Home.php?">Home | </a></td>
-                    <td> <a href="Products.php?">Products | </a></td>
-                    <td> <a href="Users.php?">Users | </a></td>
-                    <td> <a href="ManualOrders.php?">Manual orders | </a></td>
+                    <td> <a href="userHomePage.php?">Home | </a></td>
+                    <td> <a href="addproductall.php?">Products | </a></td>
+                    <td> <a href="alluserspage.php?">Users | </a></td>
+                    <td> <a href="adminOrderPage.php?">Manual orders | </a></td>
                     <td> <a href="Checks.php?">Checks </a></td>
                 </table>
             </div>
@@ -120,13 +120,7 @@
        $user='basma';
        $password='basma12345';
     //    var_dump($_POST);
-        if (empty($_POST["product_name"])) {
-           echo  "Product Name is required"."\n";
-            // fwrite($filesave,$errors);
-            
-            echo "<br>";
-           
-        }
+       
 
         
         if (empty($_POST["price"])) {
