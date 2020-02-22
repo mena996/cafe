@@ -86,7 +86,7 @@ function calculateCost(){
     }
     for (let item of itemsPrice) {
         tot+=parseInt(item.innerText);
-        bill.innerText=tot;
+        bill.innerText=tot+" LE";
     }
 }
 

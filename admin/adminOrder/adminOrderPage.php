@@ -5,6 +5,19 @@
     <title>Home</title>
 </head>
 <body>
+
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Products</a></li>
+            <li><a href="">Users</a></li>
+            <li><a href="">Manual Order</a></li>
+            <li><a href="">Checks</a></li>
+
+        </ul>
+        <p>User Name</p>
+    </nav>
+
     <div class="container">
 
         <div class="currentOrder">
@@ -63,6 +76,7 @@
         
         
     </div>
+    <div style="font-size:20px" class="footer">&copy; 2020 قهوة العمدة</div>
     <script src="adminOrderPage.js"></script>
 </body>
 </html>
