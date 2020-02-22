@@ -158,7 +158,9 @@
                 echo "size";
             }
             if(empty($errors)==true){
-            
+                move_uploaded_file($file_tmp,"/var/www/html/".$file_name);
+         
+                // echo "Success";
             // var_dump($_POST);
             try{
             $db=new PDO ($dsn,$user,$password);
@@ -174,18 +176,8 @@
             
             $categoryid="";
             $categoryid.=$_POST["category"];
-            
-            
-            
-            if(empty($errors)==true){
-                $path="/var/www/html/".$file_name;
-                // move_uploaded_file($file_tmp,"/var/www/html/".$file_name)
-            //         fwrite($filesave, "File Upload Success");
-
-            }
-        
-           
-        
+         
+            $path="/var/www/html/".$file_name;
             $query="INSERT INTO products (name, price, image,category_id) VALUES (?,?,?,?)";
                  
             $stmt=$db->prepare($query);
@@ -202,7 +194,10 @@
         echo "Connection failed:".$e->getMessage();
     }
  }    
+}else{
+    print_r($errors);
 }
+// 
 
 ?>
 </html>

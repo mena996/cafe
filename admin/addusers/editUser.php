@@ -55,7 +55,14 @@
                     <td>   <input name="extnumber" class="" placeholder="please enter your ext. number" type="text">
                         <span class="error">*</span></td>
                 </tr>
-            
+                <tr>
+                <td> Profile Picture </td>
+
+                    <td class="choosefile">
+                        <input type="file" name="profilePic" class="" id="">
+                        <br>
+                        <span class="error">*</span></td>
+                </tr>
                        
 				<tr class="buttons">
                     <td>

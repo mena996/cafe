@@ -105,8 +105,30 @@ if(empty($_POST['extnumber'])){
     echo "<h3># Please select a room </h3>";
         $flag=1;
 }
+if(isset($_FILES['profilePic'])){
+    $errors= array();  
+    // var_dump($_FILES);
+    
+    $file_name = $_FILES['profilePic']['name'];
+    $file_size =$_FILES['profilePic']['size'];
+    $file_tmp =$_FILES['profilePic']['tmp_name'];
+    $file_type=$_FILES['profilePic']['type'];
+    $ext=explode('.',$_FILES['profilePic']['name']);
+    $file_ext=strtolower(end($ext));
 
-if($flag != 1){
+    $extensions= array("jpeg","jpg","png");
+    
+    if(in_array($file_ext,$extensions)=== false){
+        $errors[]="extension not allowed, please choose a JPEG or PNG file. \n";
+        echo "ext";
+    }
+    if($file_size > 1097152){
+        $errors[]='File size must be excately 1 MB \n';
+        echo "size";
+    }
+    if(empty($errors)==true){
+        move_uploaded_file($file_tmp,"/var/www/html/".$file_name);
+        if($flag != 1){
     // echo "<br>connecting to database<br>";
 
        $dsn='mysql:dbname=cafe;host=127.0.0.1;';
@@ -132,10 +154,12 @@ if($flag != 1){
              $room=$_POST['roomnumber'];
             //  echo $room;
             //  echo "Number: ".$number;
-            $query="UPDATE users SET name='$name',email='$email',password='$password',ext='$ext',room='$room' WHERE user_id=$number";
+            $file_name=$_FILES['profilePic']['name'];
+            $path="/var/www/html/".$file_name;
+            $query="UPDATE users SET name='$name',email='$email',password='$password',ext='$ext',room='$room',image='$path' WHERE user_id=$number";
             
             $stmt=$db->prepare($query);
-            $stmt->execute([$name,$email,$password,$ext,$room]);
+            $stmt->execute([$name,$email,$password,$ext,$room,$path]);
 
             $result=$stmt->fetchAll();
       
@@ -174,6 +198,9 @@ if($flag != 1){
     }
  
 }
-
+}    
+}else{
+    print_r($errors);
+}
 ?>
 </html>
