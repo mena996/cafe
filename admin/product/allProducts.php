@@ -54,7 +54,7 @@ tr:nth-child(even) {
     while ($row = $stmt->fetch()) {
       echo "<tr id={$row['product_id']}>
                <td>{$row["name"]}</td>
-               <td> <img src='image/{$row["image"]}' alt='{$row["name"]}' height='100' width='100'> </td>
+               <td> <img src='../../Images/{$row["image"]}' alt='{$row["name"]}' height='100' width='100'> </td>
                <td>{$row["price"]}</td>
                <td>{$row["category"]}</td>
                <td><form action='http://localhost/database/update.php' method='get'><input type='submit' value='update' text='update'/><input type='hidden' name='id' value='{$row["id"]}' /> </form></td>

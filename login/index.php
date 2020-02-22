@@ -39,10 +39,10 @@ function search($message){
             $_SESSION["password"] = $row['password'];
             $_SESSION["type"] = $row['type'];
             if($row['type']==0){
-                header('Location:../Admin/product/allProducts.php');
+                header('Location:../admin/product/allProducts.php');
             }
             else{
-                header('Location:../User%20home page/userHomePage.php');
+                header('Location:../user/userHomePage/userHomePage.php');
             }
         }else
         {
