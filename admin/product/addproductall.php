@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+    if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
+       header('Location: /php_project/login/index.php');
+    }
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -117,8 +122,8 @@
 // echo "ertyui";
        $dsn='mysql:dbname=cafe;host=127.0.0.1;';
     //    echo "dfghjk";
-       $user='basma';
-       $password='basma12345';
+       $user='root';
+       $password='Azayem_242007';
     //    var_dump($_POST);
        
 

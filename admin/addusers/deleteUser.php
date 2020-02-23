@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+    if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
+       header('Location: /php_project/login/index.php');
+    }
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -80,8 +85,8 @@
 <?php
 // Retrieve the URL variables (using PHP).
 $dsn='mysql:dbname=cafe;host=127.0.0.1;';
-$user='basma';
-$password='basma12345';
+$user='root';
+$password='';
 $number = $_GET['row'];
 // echo $_GET['id'];
 
@@ -102,32 +107,33 @@ try{
      $stmt=$db->prepare($queryselect);
      $stmt->execute();
     
+     header('Location: /php_project/admin/addusers/alluserspage.php');
  
-     $resultselect=$stmt->fetch(PDO::FETCH_OBJ);
-    //  var_dump($resultselect);
-    //  echo $resultselect."\n";
+    //  $resultselect=$stmt->fetch(PDO::FETCH_OBJ);
+    // //  var_dump($resultselect);
+    // //  echo $resultselect."\n";
  
-        echo "<table style='border: 3px solid black;padding:0px;margin-left:5%;width:90%'>";
-        echo "<tr style=' text-align:center;background-color:lightgray;'><th style='border-right: 3px solid black;margin:0%;padding:0%;'>Name</th>
-        <th style='border-right: 3px solid black;'>Room</th><th style='border-right: 3px solid black;'>Image</th>
-        <th style='border-right: 3px solid black;'>Ext</th><th>Action</th></tr>";
-        while($resultselect=$stmt->fetch(PDO::FETCH_OBJ)){
-            $num=$resultselect->user_id;
-        echo ("<tr>
-        <td style='font-style: italic; color: black;border-right: 3px solid black;'>".$resultselect->name.
-        "</td><td style='font-style: italic; color: black;border-right: 3px solid black;background-color:mintcream;text-align:center;'>"
-        .$resultselect->room."</td><td style='font-style: italic; color: black;border-right: 3px solid black;text-align:center;'>"
-        .$resultselect->image."</td><td style='font-style: italic; color: black;background-color:mintcream;border-right: 3px solid black;text-align:center;'>"
-        .$resultselect->ext."</td><td style='font-style: italic; color: black;text-align:center;'>
-        <a href='editUser.php?row=".$num."'>Edit\n\n</a><a href='
-        deleteUser.php?row=".$num."
-        '>Delete</a></td></tr>");
+    //     echo "<table style='border: 3px solid black;padding:0px;margin-left:5%;width:90%'>";
+    //     echo "<tr style=' text-align:center;background-color:lightgray;'><th style='border-right: 3px solid black;margin:0%;padding:0%;'>Name</th>
+    //     <th style='border-right: 3px solid black;'>Room</th><th style='border-right: 3px solid black;'>Image</th>
+    //     <th style='border-right: 3px solid black;'>Ext</th><th>Action</th></tr>";
+    //     while($resultselect=$stmt->fetch(PDO::FETCH_OBJ)){
+    //         $num=$resultselect->user_id;
+    //     echo ("<tr>
+    //     <td style='font-style: italic; color: black;border-right: 3px solid black;'>".$resultselect->name.
+    //     "</td><td style='font-style: italic; color: black;border-right: 3px solid black;background-color:mintcream;text-align:center;'>"
+    //     .$resultselect->room."</td><td style='font-style: italic; color: black;border-right: 3px solid black;text-align:center;'>"
+    //     .$resultselect->image."</td><td style='font-style: italic; color: black;background-color:mintcream;border-right: 3px solid black;text-align:center;'>"
+    //     .$resultselect->ext."</td><td style='font-style: italic; color: black;text-align:center;'>
+    //     <a href='editUser.php?row=".$num."'>Edit\n\n</a><a href='
+    //     deleteUser.php?row=".$num."
+    //     '>Delete</a></td></tr>");
     
-    }
+    // }
 
-    echo "</table>";
+    // echo "</table>";
 
-    $resultselect->free_result();
+    // $resultselect->free_result();
  
 }
 catch(PDOException $e){

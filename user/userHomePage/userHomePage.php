@@ -1,18 +1,21 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+    if(!isset($_SESSION["loggedIn"])){
+       header('Location: /php_project/login/index.php');
+    }
+?>
 <html>
 <head>
-    <link rel="stylesheet" href="userHomePage.css">
+    <link rel="stylesheet" href="../../css/website.css">
     <title>Home</title>
 </head>
 <body>
 
-    <nav>
-        <ul>
-            <li><a href="userHomePage.php">Home</a></li>
-            <li><a href="">Orders</a></li>
-        </ul>
-        <p>User Name</p>
-    </nav>
+<?php
+    include '../../layout/userHeader.php';
+?>
+
+</div> 
 
     <div class="container">
         <div class="currentOrder">
@@ -27,20 +30,20 @@
                         <option value="3">3</option>
                     </select>
                     <hr>
+                    <div class="total">Total:<span id="bill"></span></div>
+                    <button type="submit" class="confirm">Confirm</button>
                 </form>
-                <div class="total">Total:<span id="bill"></span></div>
-                <button type="submit" class="confirm">Confirm</button>
         </div>
         <div class="container2">
 
             <div class="latestOrder"><p>Latest Order:</p>
                 <?php
-                $id=1;
+                $userId = $_SESSION["user_id"];
                 include 'databaseConnection.php';
                 $sql = "SELECT amount, name, image
                         FROM orders, order_items, products 
-                        WHERE orders.user_id=$id
-                        AND orders.date_time=(SELECT MAX(date_time) FROM orders WHERE user_id=$id)
+                        WHERE orders.user_id=$userId
+                        AND orders.date_time=(SELECT MAX(date_time) FROM orders WHERE user_id=$userId)
                         AND orders.order_id=order_items.order_id 
                         AND products.product_id=order_items.product_id";
                 $stmt = $db->query($sql); 
@@ -55,7 +58,6 @@
                 
             ?>
         </div>
-        <!-- <hr class="sep"> -->
         <div class="products">
             <p>Menu:</p>
             <?php
@@ -76,7 +78,9 @@
         </div>
     </div>    
     </div>
-    <div style="font-size:20px" class="footer">&copy; 2020 قهوة العمدة</div>
+    <?php
+        include '../../layout/footer.php';
+    ?>
     <script src="userHomePage.js"></script>
 </body>
 </html>

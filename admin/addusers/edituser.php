@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+    if(!isset($_SESSION["loggedIn"])){
+       header('Location: /php_project/login/index.php');
+    }
+?>
 
 <head>
     <meta charset="UTF-8">

@@ -1,0 +1,1 @@
+<div style="font-size:20px" class="footer">&copy; 2020 قهوة العمدة</div>

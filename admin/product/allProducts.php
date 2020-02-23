@@ -1,5 +1,9 @@
-
-<!DOCTYPE html>
+<?php
+    session_start();
+    if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
+       header('Location: /php_project/login/index.php');
+    }
+?>
 <html>
 <head>
 <style>
@@ -23,7 +27,7 @@ tr:nth-child(even) {
 <body>
 
 <h2>employee Table</h2>
-<form action="addproduct/addproduct.html" method="get">
+<form action="addproductall.php" method="get">
     <input type="submit" value="add new product" />
 </form>
 
@@ -39,8 +43,8 @@ tr:nth-child(even) {
 <?php 
   $servername = "localhost";
   $username = "root";
-  $password = "root";
-  $dbname = "cafe";
+  $password = "Azayem_242007";
+  $dbname = "Cafe";
   
 
   try {
@@ -54,7 +58,7 @@ tr:nth-child(even) {
     while ($row = $stmt->fetch()) {
       echo "<tr id={$row['product_id']}>
                <td>{$row["name"]}</td>
-               <td> <img src='../../Images/{$row["image"]}' alt='{$row["name"]}' height='100' width='100'> </td>
+               <td> <img src='{$row["image"]}' alt='{$row["name"]}' height='100' width='100'></td>
                <td>{$row["price"]}</td>
                <td>{$row["category"]}</td>
                <td><form action='http://localhost/database/update.php' method='get'><input type='submit' value='update' text='update'/><input type='hidden' name='id' value='{$row["id"]}' /> </form></td>

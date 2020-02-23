@@ -25,8 +25,8 @@ function search($message){
     if($message==""){
         $servername = "localhost";
         $username = "root";
-        $password = "root";
-        $dbname = "cafe";
+        $password = "Azayem_242007";
+        $dbname = "Cafe";
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $stmt = $conn->prepare("SELECT * FROM users WHERE email=? AND password=?");
         if($_SESSION){
@@ -37,12 +37,14 @@ function search($message){
         if($row = $stmt->fetch()){
             $_SESSION["email"] = $row['email'];
             $_SESSION["password"] = $row['password'];
-            $_SESSION["type"] = $row['type'];
+			$_SESSION["type"] = $row['type'];
+			$_SESSION["loggedIn"] = true;
+			$_SESSION["user_id"] = $row['user_id'];
             if($row['type']==0){
-                header('Location:../admin/product/allProducts.php');
+                header('Location: ../admin/adminOrder/adminOrderPage.php');
             }
             else{
-                header('Location:../user/userHomePage/userHomePage.php');
+				header('Location: ../user/userHomePage/userHomePage.php');
             }
         }else
         {

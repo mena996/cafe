@@ -1,11 +1,15 @@
 <?php
-
+    session_start();
+    if(!isset($_SESSION["loggedIn"])){
+        header('Location: /php_project/login/index.php');
+     }
+    $userId = (int)$_SESSION["user_id"];
     include 'databaseConnection.php';
     $products = $_POST["products"];
     // echo json_encode($_POST["products"]);
 
         $sql = "INSERT INTO orders (status, date_time, user_id) 
-                VALUES ('proccessing',now(),'1')";
+                VALUES ('proccessing',now(),$userId)";
         $db ->exec($sql);
         $last_id = $db->lastInsertId();
         foreach ($products as $product_id=>$amount ){

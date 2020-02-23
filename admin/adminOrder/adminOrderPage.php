@@ -1,22 +1,19 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+    if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
+       header('Location: /php_project/login/index.php');
+    }
+?>
 <html>
 <head>
-    <link rel="stylesheet" href="adminOrderPage.css">
+    <link rel="stylesheet" href="../../css/website.css">
     <title>Home</title>
 </head>
 <body>
 
-    <nav>
-        <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">Products</a></li>
-            <li><a href="">Users</a></li>
-            <li><a href="">Manual Order</a></li>
-            <li><a href="">Checks</a></li>
-
-        </ul>
-        <p>User Name</p>
-    </nav>
+<?php
+    include '../../layout/adminHeader.php'
+?>
 
     <div class="container">
 
@@ -73,10 +70,10 @@
             ?>
         </div>
     </div>
-        
-        
     </div>
-    <div style="font-size:20px" class="footer">&copy; 2020 قهوة العمدة</div>
+    <?php
+        include '../../layout/footer.php';
+    ?>
     <script src="adminOrderPage.js"></script>
 </body>
 </html>
