@@ -61,20 +61,13 @@ echo "<br>";
 echo "everything is good so far";
 if($flag != 1){
     echo "<br>connecting to database<br>";
-    try{
-    $dsn="mysql:host=localhost;port:3306;dbname=cafe";
-    $username="root";
-    $password="R12!dff2svF0";
-    $db=new PDO($dsn,$username,$password);
-    var_dump($dsn); //name & password are reserved so we use backtek
+    include '../../datbaseFiles/databaseConfig.php';
     $query="INSERT INTO cafe.users (`name`,`password`,email,`image`,ext,room) VALUES (?,?,?,?,?,?)";
     $statement = $db->prepare($query);
     $parameters = [ $_POST['fullName'],$_POST['password'],$_POST['email'],$target_file,$_POST['extnumber'],$_POST['roomnumber']];
     $statement->execute($parameters);
     echo "<br>we are officially connected..";
-    }catch(\ exception $e){
-        echo "error in db connection";
-    }
+    
 }
 
 

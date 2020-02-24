@@ -84,16 +84,11 @@
 </body>
 <?php
 // Retrieve the URL variables (using PHP).
-$dsn='mysql:dbname=cafe;host=127.0.0.1;';
-$user='root';
-$password='';
+include '../../datbaseFiles/databaseConfig.php';
 $number = $_GET['row'];
 // echo $_GET['id'];
 
 // echo "Number: ".$number;
-try{
-    $db=new PDO ($dsn,$user,$password);
-    // var_dump($db);
  
     $query="DELETE FROM users WHERE user_id=$number";
    
@@ -135,12 +130,6 @@ try{
 
     // $resultselect->free_result();
  
-}
-catch(PDOException $e){
-echo "Connection failed:".$e->getMessage();
-}
-
-
 ?>
 
 </html>

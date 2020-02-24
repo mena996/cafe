@@ -1,26 +1,24 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+    if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
+       header('Location: /php_project/login/index.php');
+    }
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../css/website.css">
     <title>Orders</title>
 </head>
 <body>
     <?php
-    $servername="localhost";
-    $username="root";
-    $password="R12!dff2svF0";
-    $dbname="cafe";
-    try{
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT * FROM cafe.users");
+        include '../../layout/adminHeader.php';
+        include '../../datbaseFiles/databaseConfig.php';
+        $stmt = $db->prepare("SELECT * FROM users");
         $stmt->execute();
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        }catch(\ exception $e){
-            echo "error in db connection";
-        }
     ?>
     <form action="orders.php" method="POST" >
         <div class="">

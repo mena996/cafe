@@ -39,7 +39,7 @@
                 <select name="users" id="users" class="usersMenu">
                 
                     <?php
-                        include 'databaseConnection.php';
+                        include '../../datbaseFiles/databaseConfig.php';
                         $sql = "SELECT * FROM users";
                         $stmt = $db->query($sql); 
                         $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -54,7 +54,7 @@
         <!-- <hr class="sep"> -->
         <div class="products">
             <?php
-                include 'databaseConnection.php';
+                include '../../datbaseFiles/databaseConfig.php';
                 $sql = "SELECT * FROM products";
                 $stmt = $db->query($sql); 
                 $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);

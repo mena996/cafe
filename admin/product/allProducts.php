@@ -23,10 +23,13 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 </style>
+<link rel="stylesheet" href="../../css/website.css">
 </head>
 <body>
-
-<h2>employee Table</h2>
+<?php  
+    include '../../layout/adminHeader.php';
+?>
+<h2>Available Products</h2>
 <form action="addproductall.php" method="get">
     <input type="submit" value="add new product" />
 </form>
@@ -41,16 +44,10 @@ tr:nth-child(even) {
     <th>delete</th>
   </tr>
 <?php 
-  $servername = "localhost";
-  $username = "root";
-  $password = "Azayem_242007";
-  $dbname = "Cafe";
-  
 
-  try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT * FROM products");
+  
+    include '../../datbaseFiles/databaseConfig.php';
+    $stmt = $db->prepare("SELECT * FROM products");
     $stmt->execute();
 
     // set the resulting array to associative
@@ -65,13 +62,9 @@ tr:nth-child(even) {
                <td><button onclick='delete1({$row["product_id"]})'>delete</button></td>
            </tr>";
    }
-}
-catch(PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
 
 
-$conn=null;
+   $db=null;
 
 ?>
 </table>

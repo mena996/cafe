@@ -9,26 +9,14 @@
     <meta charset="UTF-8">
     <title>Add Product </title>
     <link rel="stylesheet" href="fontawesome-free-5.12.1-web/css/all.css">
+    <link rel="stylesheet" href="../../css/website.css">
 </head>
 
 <body id="main_body">
-
+<?php  
+    include '../../layout/adminHeader.php';
+?>
     <div id="form_container">
-        <div class="title">
-            <div class="menu">
-                <table>
-                    <td> <a href="userHomePage.php?">Home | </a></td>
-                    <td> <a href="addproductall.php?">Products | </a></td>
-                    <td> <a href="alluserspage.php?">Users | </a></td>
-                    <td> <a href="adminOrderPage.php?">Manual orders | </a></td>
-                    <td> <a href="Checks.php?">Checks </a></td>
-                </table>
-            </div>
-            <div class="header">
-                <h6 class="adminname">Admin</h6>
-                <i class="fas fa-heart" id="admin"></i>
-            </div>
-        </div>
         <h1 class="addproductheader"> Add Product</h1>
 
         <form id="form" class="addproduct" method="POST" action="" enctype="multipart/form-data">
@@ -120,13 +108,6 @@
 <?php
 // var_dump($_POST);
 // echo "ertyui";
-       $dsn='mysql:dbname=cafe;host=127.0.0.1;';
-    //    echo "dfghjk";
-       $user='root';
-       $password='Azayem_242007';
-    //    var_dump($_POST);
-       
-
         
         if (empty($_POST["price"])) {
             echo "price You must enter "."\n";
@@ -167,8 +148,7 @@
          
                 // echo "Success";
             // var_dump($_POST);
-            try{
-            $db=new PDO ($dsn,$user,$password);
+            include '../../datbaseFiles/databaseConfig.php';
             // var_dump($db);
             // echo "<br>";
        
@@ -193,11 +173,6 @@
             
 
             $result->free_result();
-         
-       }
-       catch(PDOException $e){
-        echo "Connection failed:".$e->getMessage();
-    }
  }    
 }else{
     print_r($errors);

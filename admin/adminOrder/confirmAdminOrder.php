@@ -1,6 +1,6 @@
 <?php
 
-    include 'databaseConnection.php';
+    include '../../datbaseFiles/databaseConfig.php';
     $products = $_POST["products"];
     $user = $_POST["user"];
     // echo json_encode($_POST["products"]);

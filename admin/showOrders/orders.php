@@ -1,14 +1,15 @@
 <?php
+    session_start();
+    if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
+       header('Location: /php_project/login/index.php');
+    }
+    include '../../layout/adminHeader.php';
     $current_id=$_POST['user_id'];
     echo ($current_id)."<br>";
-    $servername="localhost";
-    $username="root";
-    $password="R12!dff2svF0";
-    $dbname="cafe";
-  try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT * FROM users INNER JOIN orders ON users.user_id = orders.user_id WHERE users.user_id=${current_id} AND status='inProgress'");
+    
+    include '../../datbaseFiles/databaseConfig.php';
+    
+    $stmt = $db->prepare("SELECT * FROM users INNER JOIN orders ON users.user_id = orders.user_id WHERE users.user_id=${current_id} AND status='proccessing'");
     $stmt->execute();
 
     // set the resulting array to associative
@@ -16,9 +17,7 @@
     // while ($row = $stmt->fetch()) {
     //     echo $row["user_id"]." ".$row["name"]." ".$row["email"]." ".$row["date_time"]." ".$row["status"]."</br>";
     // }
-    }catch(\ exception $e){
-    echo "error in db connection";
-    }
+
     
 
 
@@ -30,6 +29,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../css/website.css">
     <title>Document</title>
 </head>
 <body>

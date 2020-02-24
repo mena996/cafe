@@ -136,16 +136,13 @@ if(isset($_FILES['profilePic'])){
         if($flag != 1){
     // echo "<br>connecting to database<br>";
 
-       $dsn='mysql:dbname=cafe;host=127.0.0.1;';
-
-       $user='basma';
-       $password='basma12345';
+      
     //    var_dump($_POST);
   
-            try{
-            $db=new PDO ($dsn,$user,$password);
+            
             // var_dump($db);
             // echo "<br>";
+            include '../../datbaseFiles/databaseConfig.php';
             $number = $_POST['id'];
             //  echo $_POSt['id'];
              $name=$_POST['user_name'];
@@ -196,11 +193,6 @@ if(isset($_FILES['profilePic'])){
            echo "</table>";
         
           $resultselect->free_result();
-
-       }
-       catch(PDOException $e){
-        echo "Connection failed:".$e->getMessage();
-    }
  
 }
 }    

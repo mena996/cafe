@@ -14,41 +14,54 @@
 </head>
 
 <body id="main_body">
+    
+<style>
+      
+      .menu {
+          display: flex;
+          flex-direction: row;
+          margin-left:2%;
+      }
+
+      .header {
+          display: flex;
+          flex-direction: row-reverse;
+          margin-right:5%;
+          
+      }
+
+      .title {
+          display: flex;
+          justify-content: space-between;
+      }
+
+      .adminname {
+          text-decoration: underline;
+          font-size: 80%;
+          margin-right: 5%;
+      }
+      #admin{
+          font-size:300%;
+      }
+      .allUsers {
+          display:flex;
+          justify-content: space-between;
+      }
+      .adduser{
+          margin-right:5%;
+      }
+      .allusers{
+          margin-left:3%;
+      }
+  </style>
+
+
     <?php
         include '../../layout/adminHeader.php'
     ?>
     <div id="form_container">
 
-                <?php
-
-                    $dsn='mysql:dbname=cafe;host=127.0.0.1;';
-                    $user='root';
-                    $password='';
-                
-                    try{
-                    $db=new PDO ($dsn,$user,$password);
-                   
-            
-                    $query="SELECT image FROM users WHERE name='admin' ";
-                    $stmt=$db->prepare($query);
-                    $stmt->execute();
-                    
-                    $result=$stmt->fetch(PDO::FETCH_OBJ);
-                    $rowcount=$stmt->rowCount();                 
-                    
-                    if ($rowcount==1)
-                    echo "<img src='$result->image' height='50' width='50'>";
-                    else
-                    echo " <i class='fas fa-users-cog' id='admin'></i> ";
-                                
-                    
-                    }
-                    catch(PDOException $e){
-                        echo "Connection failed:".$e->getMessage();
-                    }
-      
-                ?>
-         
+                         
         <div class="allUsers">
             <div class="allusers">
                <h1 > All Users</h1>
@@ -57,16 +70,12 @@
               <a href="adduser.html?">add User </a>
             </div>
         </div>
+
+        
 <?php
 
-    $dsn='mysql:dbname=cafe;host=127.0.0.1;';
 
-    $user='root';
-    $password='';
-
-        try{
-        $db=new PDO ($dsn,$user,$password);
-
+        include '../../datbaseFiles/databaseConfig.php';
         $queryselect="SELECT * FROM users ";
         $stmt=$db->prepare($queryselect);
         $stmt->execute();
@@ -92,52 +101,11 @@
 
         echo "</table>";
     
-        $resultselect->free_result();
-        }
-        catch(PDOException $e){
-            echo "Connection failed:".$e->getMessage();
-        }
-
+        // $resultselect->free_result();
+        
+        include '../../layout/footer.php'
+    
 ?>
-    <style>
-      
-        .menu {
-            display: flex;
-            flex-direction: row;
-            margin-left:2%;
-        }
-
-        .header {
-            display: flex;
-            flex-direction: row-reverse;
-            margin-right:5%;
-            
-        }
-
-        .title {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .adminname {
-            text-decoration: underline;
-            font-size: 80%;
-            margin-right: 5%;
-        }
-        #admin{
-            font-size:300%;
-        }
-        .allUsers {
-            display:flex;
-            justify-content: space-between;
-        }
-        .adduser{
-            margin-right:5%;
-        }
-        .allusers{
-            margin-left:3%;
-        }
-    </style>
-
+    
 </body>
 </html>

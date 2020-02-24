@@ -23,12 +23,8 @@ function check(){
 }
 function search($message){
     if($message==""){
-        $servername = "localhost";
-        $username = "root";
-        $password = "Azayem_242007";
-        $dbname = "Cafe";
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $stmt = $conn->prepare("SELECT * FROM users WHERE email=? AND password=?");
+        include '../datbaseFiles/databaseConfig.php';
+        $stmt = $db->prepare("SELECT * FROM users WHERE email=? AND password=?");
         if($_SESSION){
             $stmt->execute([$_SESSION["email"],$_SESSION["password"]]);
         }else{
@@ -41,7 +37,7 @@ function search($message){
 			$_SESSION["loggedIn"] = true;
 			$_SESSION["user_id"] = $row['user_id'];
             if($row['type']==0){
-                header('Location: ../admin/adminOrder/adminOrderPage.php');
+                header('Location: ../admin/showOrders/ordersforuser.php');
             }
             else{
 				header('Location: ../user/userHomePage/userHomePage.php');
