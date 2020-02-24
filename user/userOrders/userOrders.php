@@ -37,10 +37,10 @@
             $stmt = $db->query($sqll); 
             $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);
             while($row=$stmt->fetch()){
-               echo "<tr><td>".$row["date_time"]."</td>"
-               ."<td>".$row["status"]."</td><td>".$row["totalPrice"]." LE"."</td>";
+               echo "<tr><td>".$row["date_time"]."<button data-id='{$row["order_id"]}' class='showBtn' type='button'>+</button></td>"
+               ."<td>".$row["status"]."</td><td>".$row["totalPrice"]." LE</td>";
                if($row["status"]=="processing"){
-                   echo "<td> <button data-id='{$row["order_id"]}' class=\"cancelBtn\" type='button'>Cancel</button>
+                   echo "<td> <button data-id='{$row["order_id"]}' class='cancelBtn' type='button'>Cancel</button>
                    </td></tr>";
                }else{
                    echo "</tr>";
