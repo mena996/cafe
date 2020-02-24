@@ -13,8 +13,9 @@ for (const btn of cancelBtns) {
             },
             body: requestData
           })
-        //   .then(json)
-          .then(function (data) {
+          .then((res)=>res.json())
+          .then(function (res) {
+            debugger
             console.log('Request succeeded with JSON response', data);
             alert("Your order is canceled!");
             location.reload();

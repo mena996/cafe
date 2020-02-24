@@ -49,6 +49,7 @@
         ?>
     </table>
     </div>
+    <div class="push"></div>
     <?php
         include '../../layout/footer.php';
     ?>

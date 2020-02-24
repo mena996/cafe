@@ -29,7 +29,7 @@ tr:nth-child(even) {
 <?php  
     include '../../layout/adminHeader.php';
 ?>
-<h2>Available Products</h2>
+<p>Available Products</p>
 <form action="addproductall.php" method="get">
     <input type="submit" value="add new product" />
 </form>
@@ -68,6 +68,9 @@ tr:nth-child(even) {
 
 ?>
 </table>
+    <?php
+        include '../../layout/footer.php';
+    ?>
 </body>
 </html>
 <script>

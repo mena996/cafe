@@ -59,6 +59,8 @@
     <?php
         include '../../layout/adminHeader.php'
     ?>
+        
+    </div>
     <div id="form_container">
 
                          
@@ -103,7 +105,7 @@
     
         // $resultselect->free_result();
         
-        include '../../layout/footer.php'
+        // include '../../layout/footer.php'
     
 ?>
     

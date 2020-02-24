@@ -9,7 +9,7 @@
     // echo json_encode($_POST["products"]);
 
         $sql = "INSERT INTO orders (status, date_time, user_id) 
-                VALUES ('proccessing',now(),$userId)";
+                VALUES ('processing',now(),$userId)";
         $db ->exec($sql);
         $last_id = $db->lastInsertId();
         foreach ($products as $product_id=>$amount ){

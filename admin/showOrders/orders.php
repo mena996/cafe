@@ -9,7 +9,7 @@
     
     include '../../datbaseFiles/databaseConfig.php';
     
-    $stmt = $db->prepare("SELECT * FROM users INNER JOIN orders ON users.user_id = orders.user_id WHERE users.user_id=${current_id} AND status='proccessing'");
+    $stmt = $db->prepare("SELECT * FROM users INNER JOIN orders ON users.user_id = orders.user_id WHERE users.user_id=${current_id} AND status='processing'");
     $stmt->execute();
 
     // set the resulting array to associative

@@ -15,8 +15,6 @@
     include '../../layout/userHeader.php';
 ?>
 
-</div> 
-
     <div class="container">
         <div class="currentOrder">
                 <form id="order-form">
@@ -57,7 +55,7 @@
                 $db=null;
                 
             ?>
-        </div>
+            </div>
         <div class="products">
             <p>Menu:</p>
             <?php
@@ -78,6 +76,7 @@
         </div>
     </div>    
     </div>
+    <div class="push"></div>
     <?php
         include '../../layout/footer.php';
     ?>
