@@ -39,7 +39,7 @@
             <div class="latestOrder"><p>Latest Order:</p>
                 <?php
                 $userId = $_SESSION["user_id"];
-                include 'databaseConnection.php';
+                include '../../datbaseFiles/databaseConfig.php';
                 $sql = "SELECT amount, name, image
                         FROM orders, order_items, products 
                         WHERE orders.user_id=$userId
@@ -61,7 +61,7 @@
         <div class="products">
             <p>Menu:</p>
             <?php
-                include 'databaseConnection.php';
+                include '../../datbaseFiles/databaseConfig.php';
                 $sql = "SELECT * FROM products";
                 $stmt = $db->query($sql); 
                 $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);

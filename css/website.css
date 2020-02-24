@@ -1,4 +1,5 @@
 .container {
+    width: 100%;
     background-color: whitesmoke;
     display: flex;
     flex-direction: row;
@@ -38,6 +39,7 @@
 
 .footer {
     width: 100%;
+    margin: 0px;
     height: 40px;
     background-color: #333;
 }
@@ -144,3 +146,26 @@ hr {
     width: 250px;
     height: 30px;
 }
+
+.orders {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .orders td, .orders th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .orders tr:nth-child(even){background-color: #f2f2f2;}
+  
+  .orders tr:hover {background-color: gray;}
+  
+  .orders th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: lightslategrey;
+    color: white;
+  }
