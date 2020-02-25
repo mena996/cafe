@@ -109,7 +109,7 @@ hr {
     flex-direction: column;
     text-align: center;
     margin: 10px;
-    border-style: solid;
+    /* border-style: solid; */
     height: 90px;
 }
 
@@ -117,13 +117,21 @@ hr {
     align-self: center;
 }
 
-.btn {
+.btn, .showBtn {
     padding: 0px;
     margin: 10px;
 }
-.btn:hover {
+
+
+.btn, .showBtn:hover {
     cursor: pointer;
 }
+
+.cancelBtn:hover{
+    background-color: red;
+    cursor: pointer;
+}
+
 .confirm {
     font-size: 20px;
     border-radius: 10px;
@@ -180,3 +188,21 @@ hr {
     background-color: lightslategrey;
     color: white;
   }
+
+.ordersContainer{
+    flex: 1 0 auto;
+    width: 100%;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+}
+
+ .orderTable{
+     min-width: 100%;
+ }
+
+ .userOrder{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

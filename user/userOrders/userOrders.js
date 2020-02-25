@@ -42,9 +42,14 @@ for (const btn of showBtns) {
     .then(res=>res.json())
     .then(function (res) {
     const html = res.reduce((acc,product)=>`${acc}
-      <h1>${product.product_id}</h1>
-      `
-    ,'<div>') + '</div>'
+    <div class='item'>
+    <p>${product.name}</p>
+    <img src='${product.image}' height='60' width='100%'>
+    <p>Price: ${product.price} LE</p>
+    <p>Amount: ${product.amount}</p></div>`
+    ,'');
+    let orderSpecs = document.getElementById('orderSpecs');
+    orderSpecs.innerHTML = html;
   
     })
     .catch(function (error) {

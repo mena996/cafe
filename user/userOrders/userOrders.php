@@ -15,41 +15,44 @@
     include '../../layout/userHeader.php';
 ?>
 
-    <div class="container">
-    <table class="orders">
-        <tr>
-            <th>Order date</th>
-            <th>Status</th>
-            <th>Amount</th>
-            <th>Action</th>
-        </tr>
-        <?php
-            $userId = $_SESSION["user_id"];
-            include '../../datbaseFiles/databaseConfig.php';
+    <div class="ordersContainer">
+      <div class="orderTable">
+        <table class="orders">
+            <tr>
+                <th>Order date</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+            <?php
+                $userId = $_SESSION["user_id"];
+                include '../../datbaseFiles/databaseConfig.php';
 
-            $sqll = "SELECT sum(amount*price) as totalPrice, status, orders.order_id, date_time
-            FROM products, order_items, orders
-            WHERE orders.user_id=$userId
-            AND orders.order_id=order_items.order_id 
-            AND products.product_id=order_items.product_id
-            GROUP BY order_items.order_id";
+                $sqll = "SELECT sum(amount*price) as totalPrice, status, orders.order_id, date_time
+                FROM products, order_items, orders
+                WHERE orders.user_id=$userId
+                AND orders.order_id=order_items.order_id 
+                AND products.product_id=order_items.product_id
+                GROUP BY order_items.order_id";
 
-            $stmt = $db->query($sqll); 
-            $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);
-            while($row=$stmt->fetch()){
-               echo "<tr><td>".$row["date_time"]."<button data-id='{$row["order_id"]}' class='showBtn' type='button'>+</button></td>"
-               ."<td>".$row["status"]."</td><td>".$row["totalPrice"]." LE</td>";
-               if($row["status"]=="processing"){
-                   echo "<td> <button data-id='{$row["order_id"]}' class='cancelBtn' type='button'>Cancel</button>
-                   </td></tr>";
-               }else{
-                   echo "</tr>";
-               }
-            }
-        ?>
-    </table>
+                $stmt = $db->query($sqll); 
+                $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);
+                while($row=$stmt->fetch()){
+                echo "<tr><td><span>".$row["date_time"]
+                ."</span><button data-id='{$row["order_id"]}' class='showBtn' type='button'>Show order details</button></td>"
+                ."<td>".$row["status"]."</td><td>".$row["totalPrice"]." LE</td>";
+                if($row["status"]=="processing"){
+                    echo "<td> <button data-id='{$row["order_id"]}' class='cancelBtn' type='button'>Cancel</button>
+                    </td></tr>";
+                }else{
+                    echo "</tr>";
+                }
+                }
+            ?>
+        </table>
+      </div>
+        <div id="orderSpecs" class="userOrder"></div>
     </div>
-    <div class="push"></div>
     <?php
         include '../../layout/footer.php';
     ?>
