@@ -80,11 +80,6 @@ for (const element of items) {
         
     })
 }
-///////////////////////////////////////////////
-// usersMenu.addEventListener('change',()=>{
-//     console.log(usersMenu.value);
-//     myOrder.innerHTML+= `<input type='hidden' name='user' value='${usersMenu.value}'></input>`;
-// })
 //////////////////////////////////////////////
 function calculateCost(){
     let tot=0;
@@ -110,7 +105,10 @@ fd.addEventListener('submit',(e)=>{
         requestData+=`${name}=${value}&`
     }
     requestData+=`user=${usersMenu.value}`;
-
+    if(myOrder.innerHTML===""){
+        alert("Please choose a product");
+        return;
+    }
     fetch('/test/adminOrderPage/confirmAdminOrder.php', {
         method: 'post',
         headers: {

@@ -32,6 +32,7 @@ tr:nth-child(even) {
 <?php  
     include '../../layout/adminHeader.php';
 ?>
+<div class="container"></div>
 <p>Available Products</p>
 <form action="addproductall.php" method="get">
     <input type="submit" value="add new product" />

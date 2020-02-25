@@ -101,6 +101,10 @@ fd.addEventListener('submit',(e)=>{
     for (const [name,value] of formData.entries()){ 
         requestData+=`${name}=${value}&`
     }
+    if(myOrder.innerHTML===""){
+        alert("Please choose a product");
+        return;
+    }
     fetch('/php_project/user/userHomePage/confirmOrder.php', {
         method: 'post',
         headers: {

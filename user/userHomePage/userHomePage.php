@@ -21,7 +21,7 @@
     <div class="container">
         <div class="currentOrder">
                 <form id="order-form">
-                    <div id="myOrder" class="items">My order:</div>
+                    <div id="myOrder" class="items"></div>
                     <p class="noteLabel">Note:</p>
                     <textarea class="notes" cols="40" rows="1"></textarea>
                     <p>Room</p>

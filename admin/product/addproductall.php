@@ -18,10 +18,10 @@
 <?php  
     include '../../layout/adminHeader.php';
 ?>
-    <div id="form_container">
-        <h1 class="addproductheader"> Add Product</h1>
-
-        <form id="form" class="addproduct" method="POST" action="" enctype="multipart/form-data">
+    <div id="form_container"></div>
+        
+    <form id="form" class="addproduct" method="POST" action="" enctype="multipart/form-data">
+    <h1 class="addproductheader"> Add Product</h1>
             <table class="list">
                 <tr>
 
@@ -66,7 +66,6 @@
             </table>
         </form>
 
-    </div>
     <style>
         .error {
             color: #FF0000;
@@ -146,7 +145,7 @@
                 echo "size";
             }
             if(empty($errors)==true){
-                move_uploaded_file($file_tmp,"/var/www/html/".$file_name);
+                move_uploaded_file($file_tmp,"/var/www/html/php_project/Images/".$file_name);
          
                 // echo "Success";
             // var_dump($_POST);
@@ -164,7 +163,7 @@
             $categoryid="";
             $categoryid.=$_POST["category"];
          
-            $path="/var/www/html/".$file_name;
+            $path="/php_project/Images/".$file_name;
             $query="INSERT INTO products (name, price, image,category_id) VALUES (?,?,?,?)";
                  
             $stmt=$db->prepare($query);
