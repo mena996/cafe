@@ -3,11 +3,13 @@
     if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
        header('Location: /php_project/login/index.php');
     }
+    $userName = $_SESSION["name"];
+    $userImg = $_SESSION["image"];
 ?>
 <html>
 <head>
     <link rel="stylesheet" href="../../css/website.css">
-    <title>Home</title>
+    <title>Admin dashboard</title>
 </head>
 <body>
 

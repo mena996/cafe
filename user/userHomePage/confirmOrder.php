@@ -3,7 +3,7 @@
     if(!isset($_SESSION["loggedIn"])){
         header('Location: /php_project/login/index.php');
      }
-    $userId = (int)$_SESSION["user_id"];
+    $userId = $_SESSION["user_id"];
     include '../../datbaseFiles/databaseConfig.php';
     $products = $_POST["products"];
     // echo json_encode($_POST["products"]);

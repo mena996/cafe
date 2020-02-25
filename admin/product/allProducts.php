@@ -3,9 +3,12 @@
     if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
        header('Location: /php_project/login/index.php');
     }
+    $userName = $_SESSION["name"];
+    $userImg = $_SESSION["image"];
 ?>
 <html>
 <head>
+<title>Admin dashboard </title>
 <style>
 table {
   font-family: arial, sans-serif;

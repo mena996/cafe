@@ -3,6 +3,8 @@
     if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
        header('Location: /php_project/login/index.php');
     }
+    $userName = $_SESSION["name"];
+    $userImg = $_SESSION["image"];
 ?>
 <html lang="en">
 <head>
@@ -10,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../../css/website.css">
-    <title>Orders</title>
+    <title>Admin dashboard </title>
 </head>
 <body>
     <?php

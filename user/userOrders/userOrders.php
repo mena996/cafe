@@ -3,6 +3,8 @@
     if(!isset($_SESSION["loggedIn"])){
        header('Location: /php_project/login/index.php');
     }
+    $userName = $_SESSION["name"];
+    $userImg = $_SESSION["image"];
 ?>
 <html>
 <head>
@@ -17,7 +19,7 @@
 
     <div class="ordersContainer">
       <div class="orderTable">
-        <table class="orders">
+        <table id="ordersTable" class="orders">
             <tr>
                 <th>Order date</th>
                 <th>Status</th>
@@ -34,23 +36,25 @@
                 AND orders.order_id=order_items.order_id 
                 AND products.product_id=order_items.product_id
                 GROUP BY order_items.order_id";
-
+                $sum=0;
                 $stmt = $db->query($sqll); 
                 $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);
                 while($row=$stmt->fetch()){
-                echo "<tr><td><span>".$row["date_time"]
-                ."</span><button data-id='{$row["order_id"]}' class='showBtn' type='button'>Show order details</button></td>"
-                ."<td>".$row["status"]."</td><td>".$row["totalPrice"]." LE</td>";
-                if($row["status"]=="processing"){
-                    echo "<td> <button data-id='{$row["order_id"]}' class='cancelBtn' type='button'>Cancel</button>
-                    </td></tr>";
-                }else{
-                    echo "</tr>";
-                }
+                    $sum+=$row["totalPrice"];
+                    echo "<tr><td><span>".$row["date_time"]
+                    ."</span><button data-id='{$row["order_id"]}' class='showBtn' type='button'>Show order details</button></td>"
+                    ."<td>".$row["status"]."</td><td>".$row["totalPrice"]." LE</td>";
+                    if($row["status"]=="processing"){
+                        echo "<td> <button data-id='{$row["order_id"]}' class='cancelBtn' type='button'>Cancel</button>
+                        </td></tr>";
+                    }else{
+                        echo "</tr>";
+                    }
                 }
             ?>
         </table>
       </div>
+        <div id="sum" class='userOrder'>Total sum of orders: <?php echo $sum; ?> LE</div>
         <div id="orderSpecs" class="userOrder"></div>
     </div>
     <?php

@@ -3,11 +3,13 @@
     if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
        header('Location: /php_project/login/index.php');
     }
+    $userName = $_SESSION["name"];
+    $userImg = $_SESSION["image"];
 ?>
 
 <head>
     <meta charset="UTF-8">
-    <title>Add Product </title>
+    <title>Admin dashboard </title>
     <link rel="stylesheet" href="fontawesome-free-5.12.1-web/css/all.css">
     <link rel="stylesheet" href="../../css/website.css">
 </head>

@@ -3,6 +3,8 @@
     if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
        header('Location: /php_project/login/index.php');
     }
+    $userName = $_SESSION["name"];
+    $userImg = $_SESSION["image"];
     include '../../layout/adminHeader.php';
     $current_id=$_POST['user_id'];
     echo ($current_id)."<br>";
@@ -30,7 +32,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../../css/website.css">
-    <title>Document</title>
+    <title>Admin dashboard </title>
 </head>
 <body>
 <table align="center" border="5" bordercolor="blue" bgcolor="white" style="width:100%;">

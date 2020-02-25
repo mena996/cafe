@@ -36,6 +36,8 @@ function search($message){
 			$_SESSION["type"] = $row['type'];
 			$_SESSION["loggedIn"] = true;
 			$_SESSION["user_id"] = $row['user_id'];
+			$_SESSION["name"] = $row['name'];
+			$_SESSION["image"] = $row['image']; 
             if($row['type']==0){
                 header('Location: ../admin/showOrders/ordersforuser.php');
             }
