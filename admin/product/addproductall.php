@@ -30,26 +30,36 @@
                     <td> <input id="product_name" name="product_name" class="product_name" type="text" maxlength="255"
                             value="" />
                         <span class="error">*</span></td>
+                        <td><?php if (empty($_POST["product_name"])) {
+                                $nameErr="you must enter product name <br>";
+                                                echo $nameErr;}?>
+                       </td>
                 </tr>
 
                 <tr id="price">
-                    <td> Price </td>
+                <td> Price </td>
 
-                    <td> <input id="price" name="price" class="price" type="number" maxlength="255" min="1" step="0.5" value="1" />
-                        <span class="error">*</span></td>
-
+                <td> <input id="price" name="price" class="price" type="number" maxlength="255" min="1" step="0.5" value="1" />
+                    <span class="error">*</span></td>
+                <td><?php  if (empty($_POST["price"])) {
+                            $priceErr=" You must enter price <br>";   
+                            echo $priceErr;}?>
+                </td>
                 </tr>
 
 
                 <tr id="cat">
-                    <td> Category </td>
-                    <td> <select class="category" id="category" name="category">
-                            <option value="1">Hot Drinks</option>
-                            <option value="2">Soft Drinks</option>
-                            <option value=""></option>
-                        </select> <span class="error">*</span>
-                        <a href="addcategory.php?">add category</a></td>
-
+                <td> Category </td>
+                <td> <select class="category" id="category" name="category">
+                        <option value="1">Hot Drinks</option>
+                        <option value="2">Soft Drinks</option>
+                        <option value=""></option>
+                    </select> <span class="error">*</span>
+                    <a href="addcategory.php?">add category</a></td>
+                    <td><?php  if (empty($_POST["category"])) {
+                                $categoryErr= "please enter category <br>";;   
+                                echo  $categoryErr;}?>
+                    </td>
                 </tr>
                 <tr id="productpicture">
                     <td> Product Picture</td>
@@ -107,21 +117,24 @@
     </style>
 </body>
 <?php
-// var_dump($_POST);
-// echo "ertyui";
-        
-        if (empty($_POST["price"])) {
-            echo "price You must enter "."\n";
-            echo "<br>";
-            // fwrite($filesave,$errors);
-
-        }
+$flag=0;
+$nameErr=$priceErr=$categoryErr="";
+$productname=$price= $categoryid="";
+        // if (empty($_POST["product_name"])) {
+        //     $nameErr="you must enter product name <br>";
+        //     $flag=1;
+        // }
+       
+        // if (empty($_POST["price"])) {
+        //     $priceErr=" You must enter price <br>";     
+        //     $flag=1;
+        // }
          
-        if (empty($_POST["category"])) {
-            echo "please enter category "."\n";
-            echo "<br>";
-            // fwrite($filesave,$errors);
-        }
+        // if (empty($_POST["category"])) {
+        //     $categoryErr= "please enter category <br>";
+        //     $flag=1;
+        // }
+
 
             if(isset($_FILES['Product_Picture'])){
             $errors= array();  
@@ -138,47 +151,43 @@
             
             if(in_array($file_ext,$extensions)=== false){
                 $errors[]="extension not allowed, please choose a JPEG or PNG file. \n";
-                echo "ext";
+                echo "extension not allowed, please choose a JPEG or PNG file. <br>";
+                
             }
             if($file_size > 1097152){
-                $errors[]='File size must be excately 1 MB \n';
-                echo "size";
+                $errors[]='File size must be excately 1 MB <br>';
+               echo 'File size must be excately 1 MB <br>';
             }
             if(empty($errors)==true){
                 move_uploaded_file($file_tmp,"/var/www/html/php_project/Images/".$file_name);
-         
-                // echo "Success";
-            // var_dump($_POST);
-            include '../../datbaseFiles/databaseConfig.php';
-            // var_dump($db);
-            // echo "<br>";
+            }
+            // else {
+                // print_r($errors);
+            // }
+        }
        
-            $productname="";
-            $productname.=$_POST["product_name"];
+        if(empty($errors)==true&&empty($nameErr)&&empty($categoryErr)){
+            include '../../datbaseFiles/databaseConfig.php';
            
-            $price="";
+      
+            $path="/php_project/Images/".$file_name;
+            $productname.=$_POST["product_name"];
+         
             $price.=$_POST["price"];
             
-            
-            $categoryid="";
             $categoryid.=$_POST["category"];
-         
-            $path="/php_project/Images/".$file_name;
+          
             $query="INSERT INTO products (name, price, image,category_id) VALUES (?,?,?,?)";
                  
             $stmt=$db->prepare($query);
             $stmt->execute([$productname,$price,$path,$categoryid]);
-            $result=$stmt->fetchAll();
+            // $result=$stmt->fetchAll();
             // var_dump($result);
             // echo $result."<br>";
             
-
-            $result->free_result();
- }    
-}else{
-    print_r($errors);
-}
-// 
+            header('Location: /php_project/admin/product/allProducts.php');
+           // $result->free_result();
+               }     
 
 ?>
 </html>
