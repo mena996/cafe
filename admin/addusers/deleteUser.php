@@ -86,49 +86,17 @@
 // Retrieve the URL variables (using PHP).
 include '../../datbaseFiles/databaseConfig.php';
 $number = $_GET['row'];
-// echo $_GET['id'];
 
-// echo "Number: ".$number;
- 
     $query="DELETE FROM users WHERE user_id=$number";
    
     $stmt=$db->prepare($query);
     $stmt->execute();
-    $result=$stmt->fetchAll();
-    // var_dump($result);
-    // echo $result;
+    // $result=$stmt->fetchAll();
+  
     
-     $queryselect="SELECT * FROM users";
-     $stmt=$db->prepare($queryselect);
-     $stmt->execute();
-    
-     header('Location: /php_project/admin/addusers/alluserspage.php');
+     header('Location: /cafe/admin/addusers/alluserspage.php');
  
-    //  $resultselect=$stmt->fetch(PDO::FETCH_OBJ);
-    // //  var_dump($resultselect);
-    // //  echo $resultselect."\n";
- 
-    //     echo "<table style='border: 3px solid black;padding:0px;margin-left:5%;width:90%'>";
-    //     echo "<tr style=' text-align:center;background-color:lightgray;'><th style='border-right: 3px solid black;margin:0%;padding:0%;'>Name</th>
-    //     <th style='border-right: 3px solid black;'>Room</th><th style='border-right: 3px solid black;'>Image</th>
-    //     <th style='border-right: 3px solid black;'>Ext</th><th>Action</th></tr>";
-    //     while($resultselect=$stmt->fetch(PDO::FETCH_OBJ)){
-    //         $num=$resultselect->user_id;
-    //     echo ("<tr>
-    //     <td style='font-style: italic; color: black;border-right: 3px solid black;'>".$resultselect->name.
-    //     "</td><td style='font-style: italic; color: black;border-right: 3px solid black;background-color:mintcream;text-align:center;'>"
-    //     .$resultselect->room."</td><td style='font-style: italic; color: black;border-right: 3px solid black;text-align:center;'>"
-    //     .$resultselect->image."</td><td style='font-style: italic; color: black;background-color:mintcream;border-right: 3px solid black;text-align:center;'>"
-    //     .$resultselect->ext."</td><td style='font-style: italic; color: black;text-align:center;'>
-    //     <a href='editUser.php?row=".$num."'>Edit\n\n</a><a href='
-    //     deleteUser.php?row=".$num."
-    //     '>Delete</a></td></tr>");
-    
-    // }
 
-    // echo "</table>";
-
-    // $resultselect->free_result();
  
 ?>
 
