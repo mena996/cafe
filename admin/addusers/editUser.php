@@ -17,6 +17,8 @@
 		<h1><a>Update user</a></h1>
         <form id="form" class="updateuser" method="POST" action="edituser.php" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $_GET['row']; ?>">    
+        <input type="hidden" name="image" value="<?php echo $_GET['image']; ?>">    
+
         <table class="list">
                 <tr>
 
@@ -66,7 +68,7 @@
                     <td class="choosefile">
                         <input type="file" name="profilePic" class="" id="">
                         <br>
-                        <span class="error">*</span></td>
+                      
                 </tr>
                        
 				<tr class="buttons">
