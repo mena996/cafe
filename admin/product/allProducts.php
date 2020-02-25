@@ -1,14 +1,7 @@
-<?php
-    session_start();
-    if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
-       header('Location: /php_project/login/index.php');
-    }
-    $userName = $_SESSION["name"];
-    $userImg = $_SESSION["image"];
-?>
+
+<!DOCTYPE html>
 <html>
 <head>
-<title>Admin dashboard </title>
 <style>
 table {
   font-family: arial, sans-serif;
@@ -26,15 +19,11 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 </style>
-<link rel="stylesheet" href="../../css/website.css">
 </head>
 <body>
-<?php  
-    include '../../layout/adminHeader.php';
-?>
-<div class="container"></div>
-<p>Available Products</p>
-<form action="addproductall.php" method="get">
+
+<h2>employee Table</h2>
+<form action="addproduct/addproduct.html" method="get">
     <input type="submit" value="add new product" />
 </form>
 
@@ -48,33 +37,40 @@ tr:nth-child(even) {
     <th>delete</th>
   </tr>
 <?php 
-
+  $servername = "localhost";
+  $username = "root";
+  $password = "root";
+  $dbname = "cafe";
   
-    include '../../datbaseFiles/databaseConfig.php';
-    $stmt = $db->prepare("SELECT * FROM products");
+
+  try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare("SELECT *,category.name as category,products.name as pname ,products.product_id as id  FROM `products` LEFT JOIN `category` on products.category_id= category.category_id");
     $stmt->execute();
 
     // set the resulting array to associative
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
     while ($row = $stmt->fetch()) {
-      echo "<tr id={$row['product_id']}>
-               <td>{$row["name"]}</td>
-               <td> <img src='{$row["image"]}' alt='{$row["name"]}' height='100' width='100'></td>
+      echo "<tr id={$row['id']}>
+               <td>{$row["pname"]}</td>
+               <td> <img src='../../Images/{$row["image"]}' alt='{$row["pname"]}' height='100' width='100'> </td>
                <td>{$row["price"]}</td>
                <td>{$row["category"]}</td>
                <td><form action='http://localhost/database/update.php' method='get'><input type='submit' value='update' text='update'/><input type='hidden' name='id' value='{$row["id"]}' /> </form></td>
-               <td><button onclick='delete1({$row["product_id"]})'>delete</button></td>
+               <td><button onclick='delete1({$row["id"]})'>delete</button></td>
            </tr>";
    }
+}
+catch(PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
 
 
-   $db=null;
+$conn=null;
 
 ?>
 </table>
-    <?php
-        include '../../layout/footer.php';
-    ?>
 </body>
 </html>
 <script>
@@ -82,7 +78,7 @@ tr:nth-child(even) {
         var row = document.getElementById(id);
         row.parentNode.removeChild(row);
         var xmlhttp = new XMLHttpRequest();
-       // xmlhttp.open("GET", "http://localhost/database/delete.php?id=" + id, true);
+        xmlhttp.open("GET", "delete.php?id=" + id, true);
         xmlhttp.send();
   }
 </script>
