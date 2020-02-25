@@ -88,6 +88,7 @@
         <th style='border-right: 3px solid black;'>Ext</th><th>Action</th></tr>";
         while($resultselect=$stmt->fetch(PDO::FETCH_OBJ)){
             $num=$resultselect->user_id;
+            $image=$resultselect->image;
         echo ("<tr>
             <td style='font-style: italic; color: black;border-right: 3px solid black;'>".$resultselect->name.
             "</td><td style='font-style: italic; color: black;border-right: 3px solid black;background-color:mintcream;text-align:center;'>"
@@ -96,7 +97,7 @@
             <img src='$resultselect->image' alt='$resultselect->name' height='50' width='50'> 
             </td><td style='font-style: italic; color: black;background-color:mintcream;border-right: 3px solid black;text-align:center;'>"
             .$resultselect->ext."</td><td style='font-style: italic; color: black;text-align:center;'>
-            <a href='editUser.php?row=".$num."'>Edit\n\n</a><a href='deleteUser.php?row=".$num."
+            <a href='editUser.php?row=".$num."&image=".$image."'>Edit\n\n</a><a href='deleteUser.php?row=".$num."
             '>Delete</a></td></tr>");
         
         }
