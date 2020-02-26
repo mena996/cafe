@@ -1,4 +1,9 @@
-
+<?php
+    session_start();
+    if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
+       header('Location: ../../login/index.php');
+    }
+    ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,11 +26,17 @@ tr:nth-child(even) {
 </style>
 </head>
 <body>
-
+<link rel="stylesheet" href="fontawesome-free-5.12.1-web/css/all.css">
+<link rel="stylesheet" href="../../css/website.css">
+<?php
+include '../../layout/adminHeader.php';
+?>
+<br><br>
 <h2>employee Table</h2>
-<form action="addproduct/addproduct.html" method="get">
-    <input type="submit" value="add new product" />
+<form action="addproductall.php" method="get">
+    <input type="submit" value="add new product" style="width:200px!important"/>
 </form>
+<br>
 
 <table id="myTable">
   <tr>
@@ -71,6 +82,9 @@ $conn=null;
 
 ?>
 </table>
+<?php
+        include '../../layout/footer.php';
+    ?>
 </body>
 </html>
 <script>

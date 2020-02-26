@@ -3,7 +3,7 @@
     <a href="../product/allProducts.php">Products</a>
     <a href="../addusers/alluserspage.php">Users</a>
     <a href="../adminOrder/adminOrderPage.php">Manual Order</a>
-    <a href="">Checks</a>
+    <a href="../checks/checks.php">Checks</a>
     
     <div class="topnav-right">
         <?php echo "<img src='$userImg' height='40' width='40'>$userName"; ?>

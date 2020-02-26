@@ -1,7 +1,7 @@
 <?php
   session_start();
   if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
-       header('Location: /php_project/login/index.php');
+       header('Location: ../../login/index.php');
     }
         include '../../layout/adminHeader.php';
         //include '../../datbaseFiles/databaseConfig.php';
@@ -184,6 +184,8 @@ tr.hidden {
 <head>
 </head>
 <body>
+<link rel="stylesheet" href="fontawesome-free-5.12.1-web/css/all.css">
+<link rel="stylesheet" href="../../css/website.css">
 <h2>checks</h2>
 <form action="checks.php">
 <label>from</label><input id="dateFrom" name="from" type="date" value=<?= $_GET['from'] ?> >
@@ -337,6 +339,8 @@ function search() {
   }
 }
 </script>
-
+<?php
+        include '../../layout/footer.php';
+    ?>
 </body>
 </html>

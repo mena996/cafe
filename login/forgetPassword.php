@@ -3,60 +3,32 @@ session_start();
 ?>
 <?php
 function check(){
-    $message="";
-    if(empty($_POST["password"])){
-        $message=$message."password is empty"."<br>";
-    }
-    if(empty($_POST["email"])){
-        $message=$message."email is empty"."<br>";
-    }
-    else{
-        if(!preg_match("/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/", $_POST["email"])){
-            $message=$message."Invalid email format1"."<br>";
-        }
+	$message="";
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-            $message=$message."Invalid email format2"."<br>";
+            $message=$message."Invalid email format"."<br>";
         }
-    }
-    
     return $message;
 }
 function search($message){
     if($message==""){
         include '../datbaseFiles/databaseConfig.php';
-        $stmt = $db->prepare("SELECT * FROM users WHERE email=? AND password=?");
-        if($_SESSION){
-            $stmt->execute([$_SESSION["email"],$_SESSION["password"]]);
-        }else{
-            $stmt->execute([$_POST["email"],$_POST["password"]]);
-        }
+        $stmt = $db->prepare("SELECT * FROM users WHERE email=?");
+        $stmt->execute([$_POST["email"]]);
         if($row = $stmt->fetch()){
-            $_SESSION["email"] = $row['email'];
-            $_SESSION["password"] = $row['password'];
-			$_SESSION["type"] = $row['type'];
-			$_SESSION["loggedIn"] = true;
-			$_SESSION["user_id"] = $row['user_id'];
-			$_SESSION["name"] = $row['name'];
-			$_SESSION["image"] = $row['image']; 
-            if($row['type']==0){
-                header('Location: ../admin/showOrders/ordersforuser.php');
-            }
-            else{
-				header('Location: ../user/userHomePage/userHomePage.php');
-            }
+				//send password
+                header('Location: index.php');
         }else
         {
-            return "Wrong user name or password";
+            return "Wrong Email";
         }
     }else{
         return $message;
     }
 }
+$message="";
 if($_POST){
+
     $message=search(check());
-}
-if($_SESSION){
-    $message=search("");
 }
 ?> 
 <!-- <!DOCTYPE html>
@@ -112,46 +84,30 @@ password: <input type="password" name="password" required><br>
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form action="index.php" method="post">
+				<form action="forgetPassword.php" method="post">
 					<span class="login100-form-logo">
 						<i class="zmdi zmdi-account"></i>
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
+					Forgot Password
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="email" placeholder="Username" required>
+						<input class="input100" type="email" name="email" placeholder="Email" required>
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="password" placeholder="Password" required>
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
-					</div>
-
-					<div class="contact100-form-checkbox">
-						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-						<label class="label-checkbox100" for="ckb1">
-							Remember me
-						</label>
-					</div>
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Login
+							send
 						</button>
 					</div>
                     <div class="container-login100-form-btn">
                         <i style='color:red;font-size:18px;font-family:calibri ;' id="error"><?=$message?></i> 
 					</div>
 
-					<div class="text-center p-t-90">
-						<a class="txt1" href="forgetPassword.php">
-							Forgot Password?
-						</a>
-					</div>
 				</form>
 			</div>
 		</div>

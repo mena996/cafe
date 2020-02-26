@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION["loggedIn"])){
-       header('Location: /php_project/login/index.php');
+       header('Location: ../../login/index.php');
     }
     $userName = $_SESSION["name"];
     // $userImg = $_SESSION["image"];

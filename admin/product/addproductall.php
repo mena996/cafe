@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
-       header('Location: /php_project/login/index.php');
+       header('Location: ../../login/index.php');
     }
     $userName = $_SESSION["name"];
     $userImg = $_SESSION["image"];
@@ -145,7 +145,7 @@
                 echo "size";
             }
             if(empty($errors)==true){
-                move_uploaded_file($file_tmp,"/var/www/html/php_project/Images/".$file_name);
+                move_uploaded_file($file_tmp,"/var/www/html/../Images/".$file_name);
          
                 // echo "Success";
             // var_dump($_POST);
@@ -163,7 +163,7 @@
             $categoryid="";
             $categoryid.=$_POST["category"];
          
-            $path="/php_project/Images/".$file_name;
+            $path="/../Images/".$file_name;
             $query="INSERT INTO products (name, price, image,category_id) VALUES (?,?,?,?)";
                  
             $stmt=$db->prepare($query);

@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION["loggedIn"])){
-        header('Location: /php_project/login/index.php');
+        header('Location: ../../login/index.php');
      }
     $userId = $_SESSION["user_id"];
     include '../../datbaseFiles/databaseConfig.php';

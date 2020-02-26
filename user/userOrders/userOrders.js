@@ -6,7 +6,7 @@ for (const btn of cancelBtns) {
       let orderId = e.target.dataset["id"];
       let requestData=`orderId=${orderId}`;
         
-        fetch('/php_project/user/userOrders/cancelOrder.php', {
+        fetch('/../user/userOrders/cancelOrder.php', {
             method: 'post',
             headers: {
               "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
@@ -32,7 +32,7 @@ for (const btn of showBtns) {
     // console.log("show");
     let orderId = e.target.dataset["id"];
     let requestData=`orderId=${orderId}`;
-    fetch('/php_project/user/userOrders/showOrder.php', {
+    fetch('/../user/userOrders/showOrder.php', {
       method: 'post',
       headers: {
         "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"

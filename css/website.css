@@ -2,7 +2,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-image: url('/php_project/Images/background.jpg');
+    background-image: url('/../Images/background.jpg');
     background-size: cover;
 }
 
