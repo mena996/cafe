@@ -9,3 +9,4 @@
         <?php echo "<img src='$userImg' height='40' width='40'>$userName"; ?>
         <a href="../../login/logOut.php">Log Out</a>
 </div>
+</div>

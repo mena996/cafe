@@ -3,6 +3,8 @@
     if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
        header('Location: ../../login/index.php');
     }
+    $userName = $_SESSION["name"];
+    $userImg = $_SESSION["image"];
     ?>
 <!DOCTYPE html>
 <html>
@@ -32,10 +34,11 @@ tr:nth-child(even) {
 include '../../layout/adminHeader.php';
 ?>
 <br><br>
-<h2>employee Table</h2>
-<form action="addproductall.php" method="get">
+<h2>Available Products</h2>
+<!-- <form action="addproductall.php" method="get">
     <input type="submit" value="add new product" style="width:200px!important"/>
-</form>
+</form> -->
+<a href="addproductall.php">Add product</a>
 <br>
 
 <table id="myTable">
@@ -48,16 +51,10 @@ include '../../layout/adminHeader.php';
     <th>delete</th>
   </tr>
 <?php 
-  $servername = "localhost";
-  $username = "root";
-  $password = "root";
-  $dbname = "cafe";
-  
+    
+    include '../../datbaseFiles/databaseConfig.php';
 
-  try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT *,category.name as category,products.name as pname ,products.product_id as id  FROM `products` LEFT JOIN `category` on products.category_id= category.category_id");
+    $stmt = $db->prepare("SELECT *,category.name as category,products.name as pname ,products.product_id as id  FROM `products` LEFT JOIN `category` on products.category_id= category.category_id");
     $stmt->execute();
 
     // set the resulting array to associative
@@ -72,10 +69,6 @@ include '../../layout/adminHeader.php';
                <td><button onclick='delete1({$row["id"]})'>delete</button></td>
            </tr>";
    }
-}
-catch(PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
 
 
 $conn=null;

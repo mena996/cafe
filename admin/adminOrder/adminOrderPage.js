@@ -109,7 +109,7 @@ fd.addEventListener('submit',(e)=>{
         alert("Please choose a product");
         return;
     }
-    fetch('/test/adminOrderPage/confirmAdminOrder.php', {
+    fetch('confirmAdminOrder.php', {
         method: 'post',
         headers: {
           "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"

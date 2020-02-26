@@ -163,7 +163,7 @@
             $stmt->execute([$name,$email,$password,$ext,$room,$image]);
            
             // $result=$stmt->fetch(PDO::FETCH_OBJ);
-            header('Location: /cafe/admin/addusers/alluserspage.php');
+            header('Location: alluserspage.php');
            
  
 }

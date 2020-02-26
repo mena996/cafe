@@ -96,7 +96,7 @@ $number = $_GET['row'];
     // $result=$stmt->fetchAll();
   
     
-     header('Location: /cafe/admin/addusers/alluserspage.php');
+    header('Location: alluserspage.php');
  
 
  

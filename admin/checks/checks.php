@@ -3,8 +3,10 @@
   if(!isset($_SESSION["loggedIn"]) && $_SESSION["type"] == 0 ){
        header('Location: ../../login/index.php');
     }
-        include '../../layout/adminHeader.php';
-        //include '../../datbaseFiles/databaseConfig.php';
+    $userName = $_SESSION["name"];
+    $userImg = $_SESSION["image"];
+    include '../../layout/adminHeader.php';
+    //include '../../datbaseFiles/databaseConfig.php';
 ?>
 <style>
 body {
@@ -195,13 +197,8 @@ tr.hidden {
 <select id="userSelector" onchange="search()">
 <option value="">all</option>
   <?php 
-  $servername = "localhost";
-  $username = "root";
-  $password = "root";
-  $dbname = "cafe";
-  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $stmt = $conn->prepare("SELECT * from users");
+  include '../../datbaseFiles/databaseConfig.php';
+  $stmt = $db->prepare("SELECT * from users");
      $stmt->execute();
  
      // set the resulting array to associative
@@ -226,10 +223,10 @@ tr.hidden {
    <?php 
    try {
      if($_GET['from']&&$_GET['to']){
-     $stmt = $conn->prepare("SELECT * ,(SELECT sum(order_items.amoiunt * products.price) from order_items LEFT JOIN products on products.product_id=order_items.product_id where orders.order_id=order_items.order_id )as amount , (SELECT sum(order_items.amoiunt * products.price) from (order_items LEFT JOIN products on products.product_id=order_items.product_id)LEFT JOIN orders as ord on ord.order_id=order_items.order_id where orders.user_id=ord.user_id )as total , (select users.name from users where users.user_id=orders.user_id ) as uname from order_items LEFT JOIN orders on order_items.order_id=orders.order_id LEFT join products on order_items.product_id= products.product_id WHERE orders.date_time>? and orders.date_time<? order by orders.user_id ,orders.order_id ");
+     $stmt = $db->prepare("SELECT * ,(SELECT sum(order_items.amount * products.price) from order_items LEFT JOIN products on products.product_id=order_items.product_id where orders.order_id=order_items.order_id )as amount , (SELECT sum(order_items.amount * products.price) from (order_items LEFT JOIN products on products.product_id=order_items.product_id)LEFT JOIN orders as ord on ord.order_id=order_items.order_id where orders.user_id=ord.user_id )as total , (select users.name from users where users.user_id=orders.user_id ) as uname from order_items LEFT JOIN orders on order_items.order_id=orders.order_id LEFT join products on order_items.product_id= products.product_id WHERE orders.date_time>? and orders.date_time<? order by orders.user_id ,orders.order_id ");
      $stmt->execute([$_GET['from'],$_GET['to']]);
      }else{
-      $stmt = $conn->prepare("SELECT * ,(SELECT sum(order_items.amoiunt * products.price) from order_items LEFT JOIN products on products.product_id=order_items.product_id where orders.order_id=order_items.order_id )as amount , (SELECT sum(order_items.amoiunt * products.price) from (order_items LEFT JOIN products on products.product_id=order_items.product_id)LEFT JOIN orders as ord on ord.order_id=order_items.order_id where orders.user_id=ord.user_id )as total , (select users.name from users where users.user_id=orders.user_id ) as uname from order_items LEFT JOIN orders on order_items.order_id=orders.order_id LEFT join products on order_items.product_id= products.product_id order by orders.user_id ,orders.order_id ");
+      $stmt = $db->prepare("SELECT * ,(SELECT sum(order_items.amount * products.price) from order_items LEFT JOIN products on products.product_id=order_items.product_id where orders.order_id=order_items.order_id )as amount , (SELECT sum(order_items.amount * products.price) from (order_items LEFT JOIN products on products.product_id=order_items.product_id)LEFT JOIN orders as ord on ord.order_id=order_items.order_id where orders.user_id=ord.user_id )as total , (select users.name from users where users.user_id=orders.user_id ) as uname from order_items LEFT JOIN orders on order_items.order_id=orders.order_id LEFT join products on order_items.product_id= products.product_id order by orders.user_id ,orders.order_id ");
       $stmt->execute();
      }
      // set the resulting array to associative
@@ -273,8 +270,8 @@ tr.hidden {
       <td colspan='3'>
       ";
   }
-  echo "<span><img src='../Images/{$row['image']}' class='productImage'>
-        <label>{$row['amoiunt']} X {$row['price']} L.E</lable></span>";
+  echo "<span><img src='../../Images/{$row['image']}' class='productImage'>
+        <label>{$row['amount']} X {$row['price']} L.E</lable></span>";
   // echo "</td>
   //   </tr>";
     }
@@ -284,8 +281,7 @@ tr.hidden {
  }
  
  
- $conn=null;
- $conn2=null;
+ $db=null;
   ?>
   </tbody>
 </table>

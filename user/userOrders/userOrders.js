@@ -6,7 +6,7 @@ for (const btn of cancelBtns) {
       let orderId = e.target.dataset["id"];
       let requestData=`orderId=${orderId}`;
         
-        fetch('/../user/userOrders/cancelOrder.php', {
+        fetch('cancelOrder.php', {
             method: 'post',
             headers: {
               "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"

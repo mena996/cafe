@@ -176,16 +176,16 @@ $productname=$price= $categoryid="";
             $price.=$_POST["price"];
             
             $categoryid.=$_POST["category"];
-          
+          if($_POST){
             $query="INSERT INTO products (name, price, image,category_id) VALUES (?,?,?,?)";
                  
             $stmt=$db->prepare($query);
-            $stmt->execute([$productname,$price,$path,$categoryid]);
+            $stmt->execute([$productname,$price,$path,$categoryid]);}
             // $result=$stmt->fetchAll();
             // var_dump($result);
             // echo $result."<br>";
             
-            header('Location: /php_project/admin/product/allProducts.php');
+            // header('Location: /php_project/admin/product/allProducts.php');
            // $result->free_result();
                }     
 
