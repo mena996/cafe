@@ -2,12 +2,14 @@
 ## Library
 
   * [Font](fontawesomefx-8.9.jar)
-  * [Font]font-face (fonts/poppins/Poppins)
+  * [Font] font-face (fonts/poppins/Poppins)
   
   
 ## **Project requirments to be able to run it install the following:**
-1. visual studio code (any editor)
-2. browser to run using local host/
+1. Apache 
+2. Php 
+3. MYSQL(or any Database environment to import sql file)
+3. Browser to run using local host/
 
 ## **Steps to be able to run the project:**
 ###### 1. It is recommended to put the files of the project in folder and put it in /var/www/html
@@ -18,9 +20,9 @@
 ###### 6. Moreover you can logout if you're finished.
 
 
- ###### Restrictions:
+ ## ** Restrictions:**
 ###### \*Create account should  be valid password (at least 8 characters letters or numbers) and email 
-create account has no user Interface register through Database
+###### \*create account has no user Interface, only register through Database or use one of the default accounts.
 
 
 ## **Credits to:**
