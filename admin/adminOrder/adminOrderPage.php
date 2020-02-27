@@ -65,7 +65,7 @@
                     .$row["name"]."<br>"
                     ." <img class='image' data-id='{$row["product_id"]}' 
                     data-name='{$row["name"]}' data-price='{$row["price"]}' 
-                    src='{$row["image"]}' height=\"42\" width=\"100%\"> "
+                    src='../../Images/{$row["image"]}' height=\"42\" width=\"100%\"> "
                     .$row["price"]." LE"."</div>";
                 }
                 $db=null;

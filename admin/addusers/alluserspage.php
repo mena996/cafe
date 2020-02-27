@@ -96,7 +96,7 @@
             "</td><td style='font-style: italic; color: black;border-right: 3px solid black;background-color:mintcream;text-align:center;'>"
             .$resultselect->room."</td>
             <td style='border-right: 3px solid black;text-align:center;'>
-            <img src='$resultselect->image' alt='$resultselect->name' height='50' width='50'> 
+            <img src='../../Images/$resultselect->image' alt='$resultselect->name' height='50' width='50'> 
             </td><td style='font-style: italic; color: black;background-color:mintcream;border-right: 3px solid black;text-align:center;'>"
             .$resultselect->ext."</td><td style='font-style: italic; color: black;text-align:center;'>
             <a href='editUser.php?row=".$num."&image=".$image."'>Edit\n\n</a><a href='deleteUser.php?row=".$num."

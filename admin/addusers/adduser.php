@@ -27,7 +27,7 @@ if(empty($_POST['extnumber'])){
     echo "<h3># Please select a room </h3>";
         $flag=1;
 }
-echo "uploading..";
+// echo "uploading..";
 // if(!empty($_FILES["profilePic"]["name"])){   //always use $post when uploading files
 //     echo "initializing uploading the file.."; //sudo tail -f /var/log/httpd/error_log check for errors
 //     // $target_dir = "uploads/";
@@ -82,9 +82,9 @@ if(!empty( $_FILES['profilePic']['name'])){
 }
 if($flag != 1){
     include '../../datbaseFiles/databaseConfig.php';
-    $query="INSERT INTO users (`name`,`password`,email,`image`,ext,room) VALUES (?,?,?,?,?,?)";
+    $query="INSERT INTO users (`name`,`password`,email,`image`,ext,room,`type`) VALUES (?,?,?,?,?,?,?)";
     $statement = $db->prepare($query);
-    $parameters = [ $_POST['fullName'],$_POST['password'],$_POST['email'],"/php_project/Images/$image",$_POST['extnumber'],$_POST['roomnumber']];
+    $parameters = [ $_POST['fullName'],$_POST['password'],$_POST['email'],"$image",$_POST['extnumber'],$_POST['roomnumber'],1];
     $statement->execute($parameters);
     // echo "<br>we are officially connected..";
     header('Location: alluserspage.php');

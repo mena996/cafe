@@ -90,7 +90,9 @@ include '../../datbaseFiles/databaseConfig.php';
 $number = $_GET['row'];
 
     $query="DELETE FROM users WHERE user_id=$number";
-   
+    $stmt=$db->prepare($query);
+    $stmt->execute();
+    $query="DELETE FROM orders WHERE user_id=$number";
     $stmt=$db->prepare($query);
     $stmt->execute();
     // $result=$stmt->fetchAll();

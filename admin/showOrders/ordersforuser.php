@@ -22,7 +22,11 @@ table {
   margin: 1em 0;
   border-collapse: collapse;
 }
-
+.buttn{
+  background-color: black !important;
+  color: #fff!important;
+  width: 60px!important;
+}
 caption {
   text-align: left;
   font-style: italic;
@@ -223,10 +227,10 @@ tr.hidden {
    <?php 
    try {
      if($_GET['from']&&$_GET['to']){
-     $stmt = $db->prepare("SELECT * ,(SELECT sum(order_items.amount * products.price) from order_items LEFT JOIN products on products.product_id=order_items.product_id where orders.order_id=order_items.order_id )as amount , (SELECT sum(order_items.amount * products.price) from (order_items LEFT JOIN products on products.product_id=order_items.product_id)LEFT JOIN orders as ord on ord.order_id=order_items.order_id where orders.user_id=ord.user_id )as total , (select users.name from users where users.user_id=orders.user_id ) as uname from order_items LEFT JOIN orders on order_items.order_id=orders.order_id LEFT join products on order_items.product_id= products.product_id WHERE status='processing' and orders.date_time>? and orders.date_time<? order by orders.user_id ,orders.order_id ");
+     $stmt = $db->prepare("SELECT * ,(SELECT sum(order_items.amount * products.price) from order_items LEFT JOIN products on products.product_id=order_items.product_id where orders.order_id=order_items.order_id )as amount , (SELECT sum(order_items.amount * products.price) from (order_items LEFT JOIN products on products.product_id=order_items.product_id)LEFT JOIN orders as ord on ord.order_id=order_items.order_id where orders.user_id=ord.user_id )as total , (select users.name from users where users.user_id=orders.user_id ) as uname from order_items LEFT JOIN orders on order_items.order_id=orders.order_id LEFT join products on order_items.product_id= products.product_id WHERE status IN ('processing', 'out for delivery') and orders.date_time>? and orders.date_time<? order by orders.user_id ,orders.order_id ");
      $stmt->execute([$_GET['from'],$_GET['to']]);
      }else{
-      $stmt = $db->prepare("SELECT * ,(SELECT sum(order_items.amount * products.price) from order_items LEFT JOIN products on products.product_id=order_items.product_id where  orders.order_id=order_items.order_id )as amount , (SELECT sum(order_items.amount * products.price) from (order_items LEFT JOIN products on products.product_id=order_items.product_id)LEFT JOIN orders as ord on ord.order_id=order_items.order_id where orders.user_id=ord.user_id )as total , (select users.name from users where users.user_id=orders.user_id ) as uname from order_items LEFT JOIN orders on order_items.order_id=orders.order_id LEFT join products on order_items.product_id= products.product_id WHERE status='processing'  order by orders.user_id ,orders.order_id");
+      $stmt = $db->prepare("SELECT * ,(SELECT sum(order_items.amount * products.price) from order_items LEFT JOIN products on products.product_id=order_items.product_id where  orders.order_id=order_items.order_id )as amount , (SELECT sum(order_items.amount * products.price) from (order_items LEFT JOIN products on products.product_id=order_items.product_id)LEFT JOIN orders as ord on ord.order_id=order_items.order_id where orders.user_id=ord.user_id )as total , (select users.name from users where users.user_id=orders.user_id ) as uname from order_items LEFT JOIN orders on order_items.order_id=orders.order_id LEFT join products on order_items.product_id= products.product_id WHERE status IN ('processing', 'out for delivery')  order by orders.user_id ,orders.order_id");
       $stmt->execute();
      }
      // set the resulting array to associative
@@ -251,6 +255,8 @@ tr.hidden {
       <td hidden>{$row['user_id']}</td>
       <td>order date</td>
       <td>amount</td>
+      <td>status</td>
+      <td>action</td>
     </tr>";
   }
   if($tempOId!=$row['order_id']){
@@ -263,6 +269,9 @@ tr.hidden {
     </button></td>
       <td>{$row["date_time"]}</td>
       <td>{$row["amount"]}</td>
+      <td>{$row["status"]}</td>
+      <td><button class='buttn' onclick='deliver({$row['order_id']})'>deliver</button></td>
+      <td><button class='buttn' onclick='done({$row['order_id']})'>done</button></td>
     </tr>
     <tr class='o{$row['order_id']} s{$row['user_id']} subimg hidden'>
     <td></td>
@@ -333,6 +342,48 @@ function search() {
       }
     }       
   }
+}
+function deliver(id){
+// alert(id);
+let requestData=`orderId=${id}`;
+
+fetch('deliverOrder.php', {
+            method: 'post',
+            headers: {
+              "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+            },
+            body: requestData
+          })
+          // .then((res)=>res.json())
+          .then(function (res) {
+            // console.log('Request succeeded with JSON response');
+            alert("Delivering order!");
+            location.reload();
+          })
+          .catch(function (error) {
+            console.log('Request failed', error);
+          });
+}
+function done(id){
+// alert(id);
+let requestData=`orderId=${id}`;
+
+fetch('doneOrder.php', {
+            method: 'post',
+            headers: {
+              "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+            },
+            body: requestData
+          })
+          // .then((res)=>res.json())
+          .then(function (res) {
+            // console.log('Request succeeded with JSON response');
+            alert("Order delivered!");
+            location.reload();
+          })
+          .catch(function (error) {
+            console.log('Request failed', error);
+          });
 }
 </script>
 <?php

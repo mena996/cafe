@@ -51,7 +51,7 @@
                 $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);
                 while($row=$stmt->fetch()){
                     echo "<div class='item'>".$row["name"]
-                    ."<img src='{$row["image"]}' height='42' width='100%'>"
+                    ."<img src='../../Images/{$row["image"]}' height='42' width='100%'>"
                     ."<br>Amount:".$row["amount"]."</div>";
                 }
 
@@ -71,7 +71,7 @@
                     .$row["name"]."<br>"
                     ." <img class='image' data-id='{$row["product_id"]}' 
                     data-name='{$row["name"]}' data-price='{$row["price"]}' 
-                    src='{$row["image"]}' height=\"50\" width=\"100%\">Price:"
+                    src='../../Images/{$row["image"]}' height=\"50\" width=\"100%\">Price:"
                     .$row["price"]." LE"."</div>";
                 }
                 $db=null;

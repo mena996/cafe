@@ -170,7 +170,7 @@ $productname=$price= $categoryid="";
             include '../../datbaseFiles/databaseConfig.php';
            
       
-            $path="/php_project/Images/".$file_name;
+            $path=$file_name;
             $productname.=$_POST["product_name"];
          
             $price.=$_POST["price"];
