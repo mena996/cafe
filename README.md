@@ -20,7 +20,7 @@
 ###### 6. Moreover you can logout if you're finished.
 
 
- ## ** Restrictions:**
+ ## **Restrictions:**
 ###### \*Create account should  be valid password (at least 8 characters letters or numbers) and email 
 ###### \*create account has no user Interface, only register through Database or use one of the default accounts.
 
