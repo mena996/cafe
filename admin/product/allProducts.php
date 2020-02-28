@@ -8,48 +8,29 @@
     ?>
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
-</head>
 <body>
-<link rel="stylesheet" href="fontawesome-free-5.12.1-web/css/all.css">
-<link rel="stylesheet" href="../../css/website.css">
-<?php
-include '../../layout/adminHeader.php';
-?>
-<br><br>
-<h2>Available Products</h2>
-<!-- <form action="addproductall.php" method="get">
-    <input type="submit" value="add new product" style="width:200px!important"/>
-</form> -->
-<a href="addproductall.php">Add product</a>
+<?php include '../../layout/adminHeader.php';?>
+<div class="form_container d-flex justify-content-center">
+
+<div class="container row justify-content-center col-12"> 
+            <div class="allusers row col-12 justify-content-center">
+               <h1 class='col-6 row justify-content-center'> <strong>Available Products</strong></h1>
+            </div>
+            <div class="allusers col-10">
+                <a class='col-2 btn btn-success text-nowrap' href="adduser.html?">Add product</a>
+            </div>
 <br>
 
-<table id="myTable">
-  <tr>
-    <th>name</th>
-    <th>image</th>
-    <th>price</th>
-    <th>category</th>
-    <th>update</th>
-    <th>delete</th>
-  </tr>
+<table class="table text-center col-md-10">
+  <thead class="thead-dark">
+    <tr>
+      <th class="col-2">Name</th>
+      <th class="col-2">image</th>
+      <th class="col-2">price</th>
+      <th class="col-2">category</th>
+      <th class="col-4">Action</th>
+    </tr>
+  </thead>
 <?php 
     
     include '../../datbaseFiles/databaseConfig.php';
@@ -65,9 +46,10 @@ include '../../layout/adminHeader.php';
                <td> <img src='../../Images/{$row["image"]}' alt='{$row["pname"]}' height='100' width='100'> </td>
                <td>{$row["price"]}</td>
                <td>{$row["category"]}</td>
-               <td><form action='http://localhost/database/update.php' method='get'><input type='submit' value='update' text='update'/><input type='hidden' name='id' value='{$row["id"]}' /> </form></td>
-               <td><button onclick='delete1({$row["id"]})'>delete</button></td>
-           </tr>";
+               <td>
+                    <a href='update.php?id={$row['id']}' class='btn btn-info col-4 text-nowrap'>Edit\n\n</a>
+               <button class='btn btn-danger col-4 text-nowrap' onclick='delete1({$row["id"]})'>DELETE</button></td>
+            </tr>";
    }
 
 
