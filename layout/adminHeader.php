@@ -1,9 +1,5 @@
+<title> 2020 قهوة العمدة</title>
 
-    
-
-    
-  <title> 2020 قهوة العمدة</title>
-    
 </style>
 <link rel="stylesheet" id="compiled.css-css" href="https://z9t4u9f6.stackpathcdn.com/wp-content/themes/mdbootstrap4/css/compiled-4.13.0.min.css?ver=4.13.0" type="text/css" media="all">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -26,35 +22,35 @@
       <li class="nav-item">
         <a class="nav-link waves-effect waves-light" href="../showOrders/ordersforuser.php">Home</a>
       </li>
-      <li class="nav-item">  
+      <li class="nav-item">
         <a class="nav-link waves-effect waves-light" href="../product/allProducts.php">Products</a>
-        </li>
-        <li class="nav-item">
-    <a class="nav-link waves-effect waves-light" href="../addusers/alluserspage.php">Users</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link waves-effect waves-light" href="../adminOrder/adminOrderPage.php">Manual Order</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link waves-effect waves-light" href="../checks/checks.php">Checks</a>
-    </li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light" href="../addusers/alluserspage.php">Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light" href="../adminOrder/adminOrderPage.php">Manual Order</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light" href="../checks/checks.php">Checks</a>
+      </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item avatar dropdown">
         <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="../../Images/<?=$userImg?>" class="rounded-circle z-depth-0" alt="<?=$userName?>">
+          <img src="../../Images/<?= $userImg ?>" class="rounded-circle z-depth-0" alt="<?= $userName ?>">
         </a>
         <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
           <a class="dropdown-item waves-effect waves-light" href="../../login/logOut.php">Log Out</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-effect waves-light" href="#"><?=$userName?></a>
+        <a class="nav-link waves-effect waves-light" href="#"><?= $userName ?></a>
       </li>
     </ul>
   </div>
 </nav>
-<!--/.Navbar -->                   
+<!--/.Navbar -->
 
 
 <!--/.Navbar -->
