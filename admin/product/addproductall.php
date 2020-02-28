@@ -111,8 +111,17 @@ if ($_POST) {
                 <div class="form-group">
                     <label>Category</label>
                     <select class="custom-select my-1 mr-sm-2" id="category" name="category">
-                        <option value="1">Hot Drinks</option>
-                        <option value="2">Soft Drinks</option>
+                       <?php 
+                        include '../../datbaseFiles/databaseConfig.php';
+                        $query = "SELECT * FROM category";
+                        $stmt = $db->prepare($query);
+                        $stmt->execute();
+                        while($resultselect=$stmt->fetch(PDO::FETCH_OBJ)){
+                            echo ("<option value=".$resultselect->category_id.">"
+                            .$resultselect->name."</option>");
+                          }
+                        ?>
+                       
                     </select>
                 </div>
                 <div class="form-group">
