@@ -17,7 +17,7 @@
                <h1 class='col-6 row justify-content-center'> <strong>Available Products</strong></h1>
             </div>
             <div class="allusers col-10">
-                <a class='col-2 btn btn-success text-nowrap' href="adduser.html?">Add product</a>
+                <a class='col-2 btn btn-success text-nowrap' href="addproductall.php">Add product</a>
             </div>
 <br>
 
