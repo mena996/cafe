@@ -52,7 +52,7 @@
                 <td> Category </td>
                 <td> <select class="category" id="category" name="category">
                         <option value="1">Hot Drinks</option>
-                        <option value="2">Soft Drinks</option>
+                        <option value="2">Cold Drinks</option>
                         <option value=""></option>
                     </select> <span class="error">*</span>
                     <a href="addcategory.php?">add category</a></td>

@@ -40,7 +40,7 @@ for (const element of items) {
         ////////////////////////////////
         let incBtn = document.createElement('button');
         incBtn.type="button";
-        incBtn.className = "btn";
+        incBtn.className = "btn btn-dark btn-sm";
         incBtn.innerText="+";
         incBtn.addEventListener('click',()=>{ 
             count+=1; amount.value=count;
@@ -50,7 +50,7 @@ for (const element of items) {
         //////////////////////////////////
         let decBtn = document.createElement('button');
         decBtn.type="button";
-        decBtn.className = "btn";
+        decBtn.className = "btn btn-dark btn-sm";
         decBtn.innerText="-";
         decBtn.addEventListener('click',()=>{ 
             count-=1;
@@ -62,7 +62,7 @@ for (const element of items) {
         ///////////////////////////////
         let removeBtn = document.createElement('button');
         removeBtn.type="button";
-        removeBtn.className = "btn";
+        removeBtn.className = "btn btn-danger btn-sm";
         removeBtn.innerText= "X";
         removeBtn.addEventListener('click',()=>{myOrder.removeChild(product); calculateCost(); })
         ///////////////////////////////

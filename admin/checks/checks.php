@@ -28,6 +28,10 @@
     height: 1px;
     white-space: nowrap;
   }
+  body {
+    background-image: url('../../Images/beans-brew-caffeine-coffee-2059.jpg');
+    background-size: cover;
+  }
 </style>
 <!DOCTYPE html>
 <html>

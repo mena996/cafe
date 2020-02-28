@@ -10,7 +10,7 @@ $userImg = $_SESSION["image"];
 
 <head>
     <link rel="stylesheet" href="../../css/website.css">
-    <title>Home</title>
+    <title>Orders</title>
 </head>
 
 <body>
@@ -21,7 +21,7 @@ $userImg = $_SESSION["image"];
 
     <div class="ordersContainer">
         <div class="orderTable">
-            <table id="ordersTable" class="table">
+            <table id="ordersTable" class="table" style='color:red; font-style: italic;'>
                 <thead class="thead-dark">
                     <tr>
                         <th>Order date</th>

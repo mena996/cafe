@@ -32,7 +32,7 @@ for (const btn of showBtns) {
     // console.log("show");
     let orderId = e.target.dataset["id"];
     let requestData=`orderId=${orderId}`;
-    fetch('/../user/userOrders/showOrder.php', {
+    fetch('showOrder.php', {
       method: 'post',
       headers: {
         "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
@@ -42,11 +42,13 @@ for (const btn of showBtns) {
     .then(res=>res.json())
     .then(function (res) {
     const html = res.reduce((acc,product)=>`${acc}
-    <div class='item'>
-    <p>${product.name}</p>
-    <img src='${product.image}' height='60' width='100%'>
-    <p>Price: ${product.price} LE</p>
-    <p>Amount: ${product.amount}</p></div>`
+      <div class="card" style="width:250px;height:300px">
+      <img class="card-img-top" src='../../Images/${product.image}' style="height:200px">
+      <div class="card-body">
+        <h4 class="card-title">${product.name}</h4>
+        <p class="card-text">Price: ${product.price} LE, Amount: ${product.amount}</p>
+      </div>
+    </div>`
     ,'');
     let orderSpecs = document.getElementById('orderSpecs');
     orderSpecs.innerHTML = html;

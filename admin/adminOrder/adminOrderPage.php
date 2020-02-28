@@ -53,20 +53,32 @@
                     ?>
                 </select>
         </div>
-        <!-- <hr class="sep"> -->
+        <hr style="width: 100%; color: black; height: 1px; background-color:black;">
         <div class="products">
+            <p>Menu:</p>
             <?php
                 include '../../datbaseFiles/databaseConfig.php';
                 $sql = "SELECT * FROM products";
                 $stmt = $db->query($sql); 
                 $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);
                 while($row=$stmt->fetch()){
-                echo "<div class='item'>"
-                    .$row["name"]."<br>"
-                    ." <img class='image' data-id='{$row["product_id"]}' 
+                echo "<div class='card' style='width:100px;height:150px'>
+                    <img class='image' class='card-img-top' data-id='{$row["product_id"]}' 
                     data-name='{$row["name"]}' data-price='{$row["price"]}' 
-                    src='../../Images/{$row["image"]}' height=\"42\" width=\"100%\"> "
-                    .$row["price"]." LE"."</div>";
+                    src='../../Images/{$row["image"]}' style='height:50px'>
+                    <div class='card-body'>
+                    <h6 class='card-title'>{$row["name"]}</h6>
+                    <p class='card-text'>Price:{$row["price"]}</p>
+                    </div>
+                    </div>";
+                
+                
+                    // "<div class='item'>"
+                    // .$row["name"]."<br>"
+                    // ." <img class='image' data-id='{$row["product_id"]}' 
+                    // data-name='{$row["name"]}' data-price='{$row["price"]}' 
+                    // src='../../Images/{$row["image"]}' height=\"42\" width=\"100%\"> "
+                    // .$row["price"]." LE"."</div>";
                 }
                 $db=null;
             ?>
