@@ -28,7 +28,7 @@
                <h1 class='col-2 row justify-content-center'> <strong>All Users</strong></h1>
             </div>
             <div class="allusers col-10">
-                <a class='col-2 btn btn-success text-nowrap' href="adduser.html?">add User </a>
+                <a class='col-2 btn btn-success text-nowrap' href="adduser.php">add User </a>
             </div>
         
         <table class='table text-center col-md-10'>
