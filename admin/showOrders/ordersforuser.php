@@ -77,6 +77,7 @@ td[colspan] {
     display: none;
   }
 
+
   /* .row button {
   background-color: transparent;
   border: .1em solid transparent;
@@ -186,7 +187,7 @@ td[colspan] {
 </head>
 
 <body>
-  <div class="form_container d-flex justify-content-center form row">
+  <div class="form_container d-flex justify-content-center form row col-11">
     <h2 class="col-12 text-center">current orders</h2>
 
     <form action="ordersforuser.php" class="col-10 ">
@@ -209,7 +210,7 @@ td[colspan] {
       </div>
   </div>
   </form>
-  <div class="form_container d-flex justify-content-center form row">
+  <div class="form_container d-flex justify-content-center form row col-11">
     <div class="form-group col col-10">
       <div class="col-sm-2">
         <label class="col-sm-2 col-form-label">user:</label>
@@ -234,7 +235,7 @@ td[colspan] {
   </div>
   </div>
   <!-- <input type="text" id="myInput" onchange="search()" placeholder="Search for names.." title="Type in a name"></input> -->
-  <div class="form_container d-flex justify-content-center">
+  <div class="form_container d-flex justify-content-center mb-5">
     <table class="table text-center col-md-10" id="myTable">
       <thead class="thead-dark">
         <tr>
@@ -299,10 +300,15 @@ td[colspan] {
     <td></td>
     <td hidden>{$row['user_id']}</td>
       <td colspan='4'>
+      <div class='row col-12'>
       ";
             }
-            echo "<span><img width=100px height=75px src='../../Images/{$row['image']}' class='productImage'>
-        <label>{$row['amount']} X {$row['price']} L.E</lable></span>";
+            echo "
+            <div class='text-center col-1'>
+              <img src='../../Images/{$row['image']}' class='rounded' width=100px height=75px alt='...'>
+              <label class='text-nowrap'>{$row['amount']} X {$row['price']} L.E</lable>
+            </div>
+        ";
             // echo "</td>
             //   </tr>";
           }
@@ -315,7 +321,6 @@ td[colspan] {
         ?>
       </tbody>
     </table>
-
     <script>
       function toggle(btnID, eIDs) {
         // Feed the list of ids as a selector
@@ -410,7 +415,7 @@ td[colspan] {
           });
       }
     </script>
-    <?php
+<?php
     include '../../layout/footer.php';
     ?>
 </body>
