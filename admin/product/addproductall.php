@@ -70,7 +70,6 @@ if ($_POST) {
     include '../../layout/adminHeader.php';
     ?>
     <div id="form_container"></div>
-    </form>
     <div class="container row justify-content-center col-12">
         <div class="col-8">
             <div class="allusers row col-12 justify-content-center">

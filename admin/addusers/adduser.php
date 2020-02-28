@@ -8,6 +8,7 @@ $userImg = $_SESSION["image"];
 ?>
 <?php
 if ($_POST) {
+    var_dump($_POST);
     $flag = 0;
     if (empty($_POST['fullName'])) {
         echo "<h3># Please enter a valid username</h3>";
@@ -18,7 +19,7 @@ if ($_POST) {
         $flag = 1;
     }
     if ($_POST['password'] == $_POST['passwordConfirm']) {
-        if (!preg_match("/[a-z0-9@]{8}/", $_POST['password'])) {
+        if (!preg_match("/[a-z0-9@]/", $_POST['password'])) {
             echo "<h3># Please enter a valid password</h3>";
             $flag = 1;
         }
@@ -55,84 +56,69 @@ if ($_POST) {
             $errors[] = 'File size must be excately 1 MB \n';
             $flag = 1;
         }
-        if (empty($errors) == true) {
-            move_uploaded_file($file_tmp, "/var/www/html/php_project/Images/" . $file_name);
-            $image = $file_name;
-        }
     }
-    if ($flag != 1) {
         include '../../datbaseFiles/databaseConfig.php';
         $query = "INSERT INTO users (`name`,`password`,email,`image`,ext,room,`type`) VALUES (?,?,?,?,?,?,?)";
         $statement = $db->prepare($query);
-        $parameters = [$_POST['fullName'], $_POST['password'], $_POST['email'], "$image", $_POST['extnumber'], $_POST['roomnumber'], 1];
+        $parameters = [$_POST['fullName'], $_POST['password'], $_POST['email'], "$file_name", $_POST['extnumber'], $_POST['roomnumber'], 1];
         $statement->execute($parameters);
         // echo "<br>we are officially connected..";
         header('Location: alluserspage.php');
-    }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add User</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="adduser.css">
-</head>
-
 <body>
-    <form action="adduser.php" method="POST" enctype="multipart/form-data">
-        <div class="userinput">
-            <div class="input">
-                <div class="">
-                    <span class=""> <i class="fa fa-user"></i> </span>
-                </div>
-                <input name="fullName" class="" placeholder="please fill your Fullname" type="text">
+    <?php
+    include '../../layout/adminHeader.php';
+    ?>
+    <div id="form_container"></div>
+    <div class="container row justify-content-center col-12">
+        <div class="col-8">
+            <div class="allusers row col-12 justify-content-center">
+                <h1 class='col-6 row justify-content-center'> <strong>AddProducts</strong></h1>
             </div>
-            <div class="input">
-                <div class="">
-                    <span class=""> <i class="fa fa-envelope"></i> </span>
+            <form action="adduser.php" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Fullname</label>
+                    <input name="fullName" class="form-control" placeholder="please fill your Fullname" type="text">
                 </div>
-                <input name="email" class="" placeholder="please enter your Email address" type="text">
-            </div>
-            <div class="input">
-                <div class="">
-                    <span class=""> <i class="fa fa-lock"></i> </span>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input name="email" class="form-control" placeholder="please enter your Email address" type="email">
                 </div>
-                <input name="password" class="" placeholder="please write down your password" type="password">
-            </div>
-            <div class="input">
-                <div class="">
-                    <span class=""> <i class="fa fa-lock"></i> </span>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input name="password" class="form-control" placeholder="please write down your password" type="password">
                 </div>
-                <input name="passwordConfirm" class="" placeholder="please confirm your password" type="password">
-            </div>
-            <div class="input">
-                <div class="">
-                    <span class=""> <i class="fa fa-building"></i> </span>
+                <div class="form-group">
+                    <label>Confirm password</label>
+                    <input name="passwordConfirm" class="form-control" placeholder="please confirm your password" type="password">
                 </div>
-                <input name="roomnumber" class="" placeholder="please enter your room number" type="text">
-            </div>
-            <div class="input">
-                <div class="">
-                    <span class=""> <i class="fa fa-phone"></i> </span>
+                <div class="form-group">
+                    <label>Room number</label>
+                    <input name="roomnumber" class="form-control" placeholder="please enter your room number" type="text">
                 </div>
-                <input name="extnumber" class="" placeholder="please enter your ext. number" type="text">
-            </div>
+                <div class="form-group">
+                    <label>Ext number</label>
+                    <input name="extnumber" class="form-control" placeholder="please enter your ext. number" type="text">
+                </div>
+                
+
+                <div class="form-group">
+                    <label>Profile Picture</label>
+                    <input type="file" name="profilePic" class="form-control-file">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
+                </div>
+                <div class="form-group">
+                    <input id="saveForm" class="btn btn-primary col-3" type="submit" name="submit" value="Save" />
+                    <input id="reset" class="btn col-3" type="reset" name="reset" value="reset" />
+                </div>
+            </form>
         </div>
-        <div class="choosefile">
-            <input type="file" name="profilePic" class="" id="">
-            <br>
-        </div>
-        <div class="">
-            <button type="submit" class="btn"> Save </button>
-            <button type="reset" class="btn"> reset </button>
-        </div>
-    </form>
+    </div>
 </body>
 
 </html>
