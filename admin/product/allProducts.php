@@ -24,7 +24,7 @@
             </div>
 <br>
 
-<table class="table text-center col-md-10">
+<table class="table table-light text-center col-md-10">
   <thead class="thead-dark">
     <tr>
       <th class="col-2">Name</th>

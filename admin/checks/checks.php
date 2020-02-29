@@ -87,7 +87,7 @@
   </div>
 <!-- <input type="text" id="myInput" onchange="search()" placeholder="Search for names.." title="Type in a name"></input> -->
 <div class="form_container d-flex justify-content-center mb-5">
-    <table class="table text-center col-md-10" id="myTable">
+    <table class="table table-dark text-center col-md-10" id="myTable">
       <thead class="thead-dark">
         <tr>
           <th class="col-1"><span class="visually-hidden">Toggle</span></th>

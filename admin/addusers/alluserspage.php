@@ -31,7 +31,7 @@
                 <a class='col-2 btn btn-success text-nowrap' href="adduser.php">add User </a>
             </div>
         
-        <table class='table text-center col-md-10'>
+        <table class='table table-light text-center col-md-10'>
         
         <thead class="thead-dark">
             <tr >
@@ -62,8 +62,8 @@
             <img src='../../Images/$resultselect->image' alt='$resultselect->name' height='50' width='50'> 
             </td><td >"
             .$resultselect->ext."</td><td >
-            <a href='editUser.php?row=".$num."&image=".$image."' class='btn btn-info col-4 text-nowrap'>Edit\n\n</a>
-            <a href='deleteUser.php?row=".$num."' class='btn btn-danger col-4 text-nowrap'>Delete</a></td></tr>");
+            <a href='editUser.php?row=".$num."&image=".$image."' class='btn btn-info text-center text-nowrap'>Edit\n\n</a>
+            <a href='deleteUser.php?row=".$num."' class='btn btn-danger text-center'>Delete</a></td></tr>");
         }
         // $resultselect->free_result();
        ?>

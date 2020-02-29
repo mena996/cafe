@@ -97,6 +97,7 @@ if ($_POST) {
     <div id="form_container"></div>
     <div class="container row justify-content-center col-12">
         <div class="col-8">
+        <div class="allusers row col-12 justify-content-center">
                 <h1 class='col-6 row justify-content-center'> <strong>AddProducts</strong></h1>
             </div>
             <form id="form" class="addproduct" method="POST" action="" enctype="multipart/form-data">
