@@ -42,8 +42,8 @@ for (const btn of showBtns) {
     .then(res=>res.json())
     .then(function (res) {
     const html = res.reduce((acc,product)=>`${acc}
-      <div class="card" style="width:250px;height:300px">
-      <img class="card-img-top" src='../../Images/${product.image}' style="height:200px">
+      <div class="card" style="width:200px;height:250px">
+      <img class="card-img-top" src='../../Images/${product.image}' style="height:150px">
       <div class="card-body">
         <h4 class="card-title">${product.name}</h4>
         <p class="card-text">Price: ${product.price} LE, Amount: ${product.amount}</p>

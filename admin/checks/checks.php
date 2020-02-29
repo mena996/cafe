@@ -41,7 +41,7 @@
 <div class="form_container d-flex justify-content-center form row col-11">
     <h2 class="col-12 text-center">checks</h2>
 
-    <form action="ordersforuser.php" class="col-10 ">
+    <form action="checks.php" class="col-10 ">
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">from</label>
         <div class="col-sm-5">

@@ -18,7 +18,7 @@
     include '../../layout/userHeader.php';
 ?>
 
-    <div class="container">
+    <div class="container mb-15">
         <div class="currentOrder">
                 <p>Your Order:</p>
                 <form id="order-form">
@@ -51,8 +51,8 @@
                 $stmt = $db->query($sql); 
                 $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);
                 while($row=$stmt->fetch()){
-                    echo "<div class='card' style='width:120px;height:150px'>
-                    <img class='card-img-top' src='../../Images/{$row["image"]}' style='height:70px'>
+                    echo "<div class='card' style='width:120px;height:130px; margin-right:5px'>
+                    <img class='card-img-top' src='../../Images/{$row["image"]}' style='height:50px'>
                     <div class='card-body'>
                       <h6 class='card-title'>{$row["name"]}</h6>
                       <p class='card-text'>Amount:{$row["amount"]}</p>
@@ -78,7 +78,7 @@
                 $stmt = $db->query($sql); 
                 $result=$stmt->setFetchMode(PDO::FETCH_ASSOC);
                 while($row=$stmt->fetch()){
-                echo "<div class='card' style='width:100px;height:150px'>
+                echo "<div class='card' style='width:120px;height:130px; margin-right:5px'>
                     <img class='image' class='card-img-top' data-id='{$row["product_id"]}' 
                     data-name='{$row["name"]}' data-price='{$row["price"]}' 
                     src='../../Images/{$row["image"]}' style='height:50px'>
