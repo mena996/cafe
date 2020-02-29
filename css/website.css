@@ -2,7 +2,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-image: url('/../Images/background.jpg');
+    background-image: url('../Images/beans-brew-caffeine-coffee-2059.jpg');
     background-size: cover;
 }
 
@@ -12,10 +12,13 @@ body {
     /* background-color: whitesmoke; */
     display: flex;
     flex-direction: row;
+    color: red;
 }
 
 .container2 {
     width: 100%;
+    color: blue;
+    font-style: italic;
 }
 
 .topnav {
@@ -67,9 +70,11 @@ body {
 .currentOrder {
     min-width: 400px;
     height: 100%;
-    border-style: solid;
+    border-style: dotted;
     display: flex;
     flex-direction: column;
+    color: blue;
+    font-style: italic;
 }
 
 form {
@@ -103,7 +108,7 @@ hr {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-style: solid;
+    /* border-style: solid; */
 }
 
 .latestOrder {
@@ -112,7 +117,7 @@ hr {
     justify-content: center;
     align-items: center;
     height: 50%;
-    border-style: solid;
+    /* border-style: solid; */
 }
 
 .item {
@@ -170,7 +175,7 @@ hr {
     justify-content: center;
     align-items: center;
     height: 50%;
-    border-style: solid;
+    /* border-style: solid; */
 }
 
 .usersMenu {
@@ -210,6 +215,8 @@ hr {
 
  .orderTable{
      min-width: 100%;
+    color: blue;
+
  }
 
  .userOrder{
@@ -224,15 +231,3 @@ hr {
     flex-direction: row;
     justify-items: center;
 }
-.errors{
-    margin: auto;
-    margin-top:0%;
-    width: 60%;
-    
-    padding-top: 0px;
-    background-color:indianred;
-    color:black;
-        }
-.error {
-    color: #FF0000;
-   }
