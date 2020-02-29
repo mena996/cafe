@@ -89,16 +89,21 @@
 include '../../datbaseFiles/databaseConfig.php';
 $number = $_GET['row'];
 
-    $query="DELETE FROM users WHERE user_id=$number";
+    $query="DELETE FROM order_items 
+    WHERE order_id=(SELECT order_id FROM orders 
+    WHERE user_id=(SELECT user_id FROM users WHERE user_id=$number))";
     $stmt=$db->prepare($query);
     $stmt->execute();
     $query="DELETE FROM orders WHERE user_id=$number";
     $stmt=$db->prepare($query);
     $stmt->execute();
+    $query="DELETE FROM users WHERE user_id=$number";
+    $stmt=$db->prepare($query);
+    $stmt->execute();
     // $result=$stmt->fetchAll();
   
     
-    header('Location: alluserspage.php');
+    header('Location: ../addusers/alluserspage.php');
  
 
  
