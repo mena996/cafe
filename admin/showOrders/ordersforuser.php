@@ -257,10 +257,10 @@ td[colspan] {
         <?php
         try {
           if ($_GET['from'] && $_GET['to']) {
-            $stmt = $db->prepare("SELECT * ,(SELECT sum(order_items.amount * products.price) from order_items LEFT JOIN products on products.product_id=order_items.product_id where orders.order_id=order_items.order_id )as amount , (SELECT sum(order_items.amount * products.price) from (order_items LEFT JOIN products on products.product_id=order_items.product_id)LEFT JOIN orders as ord on ord.order_id=order_items.order_id where orders.user_id=ord.user_id )as total , (select users.name from users where users.user_id=orders.user_id ) as uname from order_items LEFT JOIN orders on order_items.order_id=orders.order_id LEFT join products on order_items.product_id= products.product_id WHERE status IN ('processing', 'out for delivery') and orders.date_time>? and orders.date_time<? order by orders.user_id ,orders.order_id ");
+            $stmt = $db->prepare("SELECT * ,(SELECT sum(order_items.amount * products.price) from order_items LEFT JOIN products on products.product_id=order_items.product_id where orders.order_id=order_items.order_id )as tamount , (SELECT sum(order_items.amount * products.price) from (order_items LEFT JOIN products on products.product_id=order_items.product_id)LEFT JOIN orders as ord on ord.order_id=order_items.order_id where orders.user_id=ord.user_id )as total , (select users.name from users where users.user_id=orders.user_id ) as uname from order_items LEFT JOIN orders on order_items.order_id=orders.order_id LEFT join products on order_items.product_id= products.product_id WHERE status IN ('processing', 'out for delivery') and orders.date_time>? and orders.date_time<? order by orders.user_id ,orders.order_id ");
             $stmt->execute([$_GET['from'], $_GET['to']]);
           } else {
-            $stmt = $db->prepare("SELECT * ,(SELECT sum(order_items.amount * products.price) from order_items LEFT JOIN products on products.product_id=order_items.product_id where  orders.order_id=order_items.order_id )as amount , (SELECT sum(order_items.amount * products.price) from (order_items LEFT JOIN products on products.product_id=order_items.product_id)LEFT JOIN orders as ord on ord.order_id=order_items.order_id where orders.user_id=ord.user_id )as total , (select users.name from users where users.user_id=orders.user_id ) as uname from order_items LEFT JOIN orders on order_items.order_id=orders.order_id LEFT join products on order_items.product_id= products.product_id WHERE status IN ('processing', 'out for delivery')  order by orders.user_id ,orders.order_id");
+            $stmt = $db->prepare("SELECT * ,(SELECT sum(order_items.amount * products.price) from order_items LEFT JOIN products on products.product_id=order_items.product_id where  orders.order_id=order_items.order_id )as tamount , (SELECT sum(order_items.amount * products.price) from (order_items LEFT JOIN products on products.product_id=order_items.product_id)LEFT JOIN orders as ord on ord.order_id=order_items.order_id where orders.user_id=ord.user_id )as total , (select users.name from users where users.user_id=orders.user_id ) as uname from order_items LEFT JOIN orders on order_items.order_id=orders.order_id LEFT join products on order_items.product_id= products.product_id WHERE status IN ('processing', 'out for delivery')  order by orders.user_id ,orders.order_id");
             $stmt->execute();
           }
           // set the resulting array to associative
@@ -298,7 +298,7 @@ td[colspan] {
       +
     </button></td>
       <td>{$row["date_time"]}</td>
-      <td>{$row["amount"]}</td>
+      <td>{$row["tamount"]}</td>
       <td>{$row["status"]}</td>
       <td><button class='btn btn-success' onclick='deliver({$row['order_id']})'>deliver</button>
       <button class='btn' onclick='done({$row['order_id']})'>done</button></td>
