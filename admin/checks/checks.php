@@ -87,13 +87,12 @@
   </div>
 <!-- <input type="text" id="myInput" onchange="search()" placeholder="Search for names.." title="Type in a name"></input> -->
 <div class="form_container d-flex justify-content-center mb-5">
-    <table class="table table-dark text-center col-md-10" id="myTable">
+    <table class="table table-light text-center col-md-10" id="myTable">
       <thead class="thead-dark">
         <tr>
           <th class="col-1"><span class="visually-hidden">Toggle</span></th>
           <th class="col-2">name</th>
           <th class="col-2">Total Amount</th>
-          <th></th>
           <th></th>
         </tr>
       </thead>

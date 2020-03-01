@@ -17,7 +17,7 @@
     include '../../layout/adminHeader.php'
 ?>
 
-    <div class="container mb-15">
+    <div class="container white mb-15">
 
         <div class="currentOrder">
                 <form id="order-form">

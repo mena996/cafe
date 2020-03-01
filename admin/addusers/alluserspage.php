@@ -23,7 +23,7 @@
     <div class="form_container d-flex justify-content-center">
 
                          
-        <div class="container row justify-content-center col-12"> 
+        <div class="container mb-5 row justify-content-center col-12"> 
             <div class="allusers row col-12 justify-content-center">
                <h1 class='col-2 row justify-content-center'> <strong>All Users</strong></h1>
             </div>

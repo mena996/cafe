@@ -57,29 +57,38 @@ if ($_POST) {
             $flag = 1;
         }
     }
-        include '../../datbaseFiles/databaseConfig.php';
-        $query = "INSERT INTO users (`name`,`password`,email,`image`,ext,room,`type`) VALUES (?,?,?,?,?,?,?)";
-        $statement = $db->prepare($query);
-        $parameters = [$_POST['fullName'], $_POST['password'], $_POST['email'], "$file_name", $_POST['extnumber'], $_POST['roomnumber'], 1];
-        $statement->execute($parameters);
-        // echo "<br>we are officially connected..";
-        header('Location: alluserspage.php');
+    include '../../datbaseFiles/databaseConfig.php';
+    $query = "INSERT INTO users (`name`,`password`,email,`image`,ext,room,`type`) VALUES (?,?,?,?,?,?,?)";
+    $statement = $db->prepare($query);
+    $parameters = [$_POST['fullName'], $_POST['password'], $_POST['email'], "$file_name", $_POST['extnumber'], $_POST['roomnumber'], 1];
+    $statement->execute($parameters);
+    // echo "<br>we are officially connected..";
+    header('Location: alluserspage.php');
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+    <style>
+        body {
+            background-image: url('../../Images/beans-brew-caffeine-coffee-2059.jpg');
+            background-size: cover;
+        }
+    </style>
+</head>
+
 <body>
     <?php
     include '../../layout/adminHeader.php';
     ?>
     <div id="form_container"></div>
-    <div class="container row justify-content-center col-12">
-        <div class="col-8">
-            <div class="allusers row col-12 justify-content-center">
-                <h1 class='col-6 row justify-content-center'> <strong>AddProducts</strong></h1>
+    <div class="container  row justify-content-center col-12">
+    <div class="allusers row col-12 justify-content-center">
+                <h1 class='col-6 row justify-content-center'> <strong class="text-light">Add User</strong></h1>
             </div>
+        <div class="col-8 white">
             <form action="adduser.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Fullname</label>
@@ -105,7 +114,7 @@ if ($_POST) {
                     <label>Ext number</label>
                     <input name="extnumber" class="form-control" placeholder="please enter your ext. number" type="text">
                 </div>
-                
+
 
                 <div class="form-group">
                     <label>Profile Picture</label>
