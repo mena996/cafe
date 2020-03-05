@@ -5,6 +5,7 @@
     }
     $userName = $_SESSION["name"];
     $userImg = $_SESSION["image"];
+    // $id = $_SESSION["user_id"];
 ?>
 <html>
 <head>

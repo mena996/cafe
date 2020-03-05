@@ -8,7 +8,7 @@ $userImg = $_SESSION["image"];
 ?>
 <?php
 if ($_POST) {
-    var_dump($_POST);
+    // var_dump($_POST);
     $flag = 0;
     if (empty($_POST['fullName'])) {
         echo "<h3># Please enter a valid username</h3>";
